@@ -11,6 +11,11 @@ import Quiz from './pages/Quiz';
 import Stage3Quiz from './pages/Stage3Quiz';
 import Results from './pages/Results';
 import Timeline from './pages/Timeline';
+import Forum from './pages/Forum';
+import ForumQnA from './pages/forum/ForumQnA';
+import ForumMentorMatching from './pages/forum/ForumMentorMatching';
+import ForumStudyBuddy from './pages/forum/ForumStudyBuddy';
+import ForumRealityCheck from './pages/forum/ForumRealityCheck';
 
 export default function App() {
   return (
@@ -27,6 +32,11 @@ export default function App() {
           <Route path="/quiz/stage3" element={<ProtectedRoute><Stage3Quiz /></ProtectedRoute>} />
           <Route path="/results" element={<ProtectedRoute><Results /></ProtectedRoute>} />
           <Route path="/timeline" element={<ProtectedRoute><Timeline /></ProtectedRoute>} />
+          <Route path="/forum" element={<ProtectedRoute><Forum /></ProtectedRoute>} />
+          <Route path="/forum/q-and-a" element={<ProtectedRoute><ForumQnA /></ProtectedRoute>} />
+          <Route path="/forum/peer-mentor-matching" element={<ProtectedRoute><ForumMentorMatching /></ProtectedRoute>} />
+          <Route path="/forum/study-buddy-finder" element={<ProtectedRoute><ForumStudyBuddy /></ProtectedRoute>} />
+          <Route path="/forum/reality-check" element={<ProtectedRoute><ForumRealityCheck /></ProtectedRoute>} />
           
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
