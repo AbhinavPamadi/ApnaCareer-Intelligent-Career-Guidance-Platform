@@ -1,44 +1,40 @@
-export function scoreSubjective(answerText, rubric) {
+export function scoreSubjective(answerText, expectedPoints = []) {
+  if (!answerText) return { score: 0, isCorrect: false };
   const clean = answerText.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ' ');
+  
+  if (expectedPoints.length === 0) return { score: 1.0, isCorrect: true };
 
-  const keyCoverage = rubric.keyConcepts.filter(c => clean.includes(c)).length / rubric.keyConcepts.length;
-  const supportCoverage = rubric.supportingConcepts.length > 0
-    ? rubric.supportingConcepts.filter(c => clean.includes(c)).length / rubric.supportingConcepts.length
-    : 0;
-  const connectorsFound = rubric.logicalConnectors.filter(c => clean.includes(c)).length;
-  const logicScore = Math.min(connectorsFound / 2, 1.0);
-  const wordCount = answerText.trim().split(/\s+/).length;
-  const completenessScore = wordCount >= rubric.minWordCount ? 1.0 : wordCount / rubric.minWordCount;
+  const matched = expectedPoints.filter(p => {
+    const keywords = p.toLowerCase().split(' ');
+    // Match if at least one significant word from the point is in the text
+    return keywords.some(k => k.length > 3 && clean.includes(k));
+  });
 
-  const finalScore = keyCoverage * 0.5 + supportCoverage * 0.2 + logicScore * 0.2 + completenessScore * 0.1;
+  const finalScore = matched.length / expectedPoints.length;
 
   return {
     score: Math.round(finalScore * 100) / 100,
-    conceptsMatched: rubric.keyConcepts.filter(c => clean.includes(c)),
-    conceptsMissed: rubric.keyConcepts.filter(c => !clean.includes(c)),
-    isCorrect: finalScore >= 0.6,
+    isCorrect: finalScore >= 0.5,
   };
 }
 
-export function scoreStructured(answerStructured, rubric) {
+export function scoreStructured(answerStructured, expectedPoints = []) {
+  if (!answerStructured) return { score: 0, isCorrect: false };
+  
   const sections = ['problemUnderstanding', 'approach', 'tradeoffs', 'decision'];
-  const sectionScores = {};
+  const fullText = sections.map(s => answerStructured[s] || '').join(' ').toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ' ');
 
-  for (const section of sections) {
-    const text = (answerStructured[section] || '').toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ' ');
-    const sectionRubric = rubric[section];
-    const matched = sectionRubric.keyConcepts.filter(c => text.includes(c)).length;
-    const coverage = matched / sectionRubric.keyConcepts.length;
-    const wordCount = (answerStructured[section] || '').trim().split(/\s+/).length;
-    const lengthPenalty = wordCount >= 15 ? 1.0 : 0.5;
-    sectionScores[section] = Math.round(coverage * lengthPenalty * 100) / 100;
-  }
+  if (expectedPoints.length === 0) return { score: 1.0, isCorrect: true };
 
-  const finalScore = sections.reduce((sum, s) => sum + sectionScores[s] * rubric[s].weight, 0);
+  const matched = expectedPoints.filter(p => {
+    const keywords = p.toLowerCase().split(' ');
+    return keywords.some(k => k.length > 3 && fullText.includes(k));
+  });
+
+  const finalScore = matched.length / expectedPoints.length;
 
   return {
     score: Math.round(finalScore * 100) / 100,
-    sectionScores,
-    isCorrect: finalScore >= 0.55,
+    isCorrect: finalScore >= 0.5,
   };
 }

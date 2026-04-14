@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { doc, getDoc, setDoc, updateDoc, collection, getDocs, arrayUnion } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { questionBank } from '../data/questionBank';
-import { updateBelief, P_INIT } from '../engine/bkt';
+import { updateBelief } from '../engine/bkt';
 import { scoreSubjective, scoreStructured } from '../engine/rubric';
-import { selectNextQuestion, checkPhaseTransition, isPhaseComplete } from '../engine/questionSelector';
+import { selectNextQuestion, isPhaseComplete } from '../engine/questionSelector';
 import { generateResults } from '../engine/resultGenerator';
 import { useToast } from '../components/ToastContext';
 
@@ -37,6 +37,10 @@ export default function Quiz() {
         
         const uid = user.uid;
 
+        // 3. Load domain priors from personality
+        const persData = await getDoc(doc(db, 'personality_responses', uid)).then(s => s.data());
+        const priors = persData?.domainPriors ?? { dsa: 0.125, web_dev: 0.125, ml: 0.125, databases: 0.125, operating_systems: 0.125, networking: 0.125, system_design: 0.125, security: 0.125 };
+
         // 1. Load quiz session (or create if first time)
         let sessSnap = await getDoc(doc(db, 'quiz_sessions', uid));
         let sessData;
@@ -45,10 +49,7 @@ export default function Quiz() {
         if (!sessSnap.exists()) {
           sessData = {
             uid, phase: 1,
-            activeDomains: ['DSA', 'WebDev', 'ML', 'Systems'],
-            eliminatedDomains: [], bestDomain: null,
             questionsAnswered: [],
-            domainScores: { DSA: 0, WebDev: 0, ML: 0, Systems: 0 },
             remedialTriggered: false,
             startedAt: new Date().toISOString(),
             lastUpdatedAt: new Date().toISOString(),
@@ -57,9 +58,8 @@ export default function Quiz() {
           await setDoc(doc(db, 'quiz_sessions', uid), sessData);
           
           bktData = {
-            uid, concepts: {},
-            domainBeliefs: { DSA: 0, WebDev: 0, ML: 0, Systems: 0 },
-            attributeBeliefs: { PO1: 0.5, PO2: 0.5, PO3: 0.5, PO4: 0.5, PO5: 0.5, PO8: 0.5 },
+            uid, 
+            domainBeliefs: priors,
           };
           await setDoc(doc(db, 'bkt_beliefs', uid), bktData);
         } else {
@@ -67,20 +67,15 @@ export default function Quiz() {
           bktData = await getDoc(doc(db, 'bkt_beliefs', uid)).then(s => s.data());
         }
 
-        // 3. Load domain priors from personality
-        const persData = await getDoc(doc(db, 'personality_responses', uid)).then(s => s.data());
-        const priors = persData?.domainPriors ?? { DSA: 0.4, WebDev: 0.4, ML: 0.4, Systems: 0.4 };
-
         setSession(sessData);
         setBktBeliefs(bktData);
         setPersonalityData(persData);
         setDomainPriors(priors);
 
         // 4. Select first question
-        const nextQ = selectNextQuestion({ questionBank, session: sessData, bktBeliefs: bktData, domainPriors: priors });
+        const nextQ = selectNextQuestion({ questionBank, session: sessData, domainBeliefs: bktData.domainBeliefs });
         
         if (!nextQ) {
-          // If no questions on mount, check if phase is complete or we just hit the end
           await handlePhaseCompleteOrNull(sessData, bktData, priors, persData);
         } else {
           setCurrentQuestion(nextQ);
@@ -99,25 +94,13 @@ export default function Quiz() {
   }, [navigate]);
 
   const resetAnswerState = (type) => {
-    if (type === 'SubjectiveStructured') {
-      setUserAnswer({ problemUnderstanding: '', approach: '', tradeoffs: '', decision: '' });
-    } else {
-      setUserAnswer(type === 'MCQ' ? null : '');
-    }
+    setUserAnswer(type === 'mcq' ? null : '');
   };
 
   const handlePhaseCompleteOrNull = async (currentSession, currentBkt, currentPriors, currentPersData) => {
     const uid = auth.currentUser.uid;
-    const transition = checkPhaseTransition(currentSession.phase, currentSession.activeDomains, currentBkt, currentPriors);
 
-    if (transition.remedial) {
-      await updateDoc(doc(db, 'quiz_sessions', uid), { remedialTriggered: true, completedAt: new Date().toISOString() });
-      await updateDoc(doc(db, 'users', uid), { assessmentStatus: 'remedial', quizComplete: true });
-      setRemedialState(true);
-      return;
-    }
-
-    if (transition.newPhase === 8) {
+    if (currentSession.phase >= 3) {
       // Generate and save results
       setSubmitting(true);
       const answersSnap = await getDocs(collection(db, 'quiz_responses', uid, 'answers'));
@@ -130,29 +113,23 @@ export default function Quiz() {
     }
 
     // Advance phase
-    const nextPhase = transition.newPhase || currentSession.phase + 1; // Fallback if stuck
-    const nextActive = transition.newActiveDomains || currentSession.activeDomains;
-    const nextEliminated = ['DSA', 'WebDev', 'ML', 'Systems'].filter(d => !nextActive.includes(d));
-
-    const updatedSession = { ...currentSession, phase: nextPhase, activeDomains: nextActive, eliminatedDomains: nextEliminated, lastUpdatedAt: new Date().toISOString() };
+    const nextPhase = currentSession.phase + 1;
+    const updatedSession = { ...currentSession, phase: nextPhase, lastUpdatedAt: new Date().toISOString() };
     setSession(updatedSession);
 
     await updateDoc(doc(db, 'quiz_sessions', uid), {
       phase: updatedSession.phase,
-      activeDomains: updatedSession.activeDomains,
-      eliminatedDomains: updatedSession.eliminatedDomains,
       lastUpdatedAt: updatedSession.lastUpdatedAt,
     });
     await updateDoc(doc(db, 'users', uid), { currentPhase: updatedSession.phase });
 
     // Try finding next question in new phase
-    setTransitionState({ phase: updatedSession.phase, activeDomains: updatedSession.activeDomains });
+    setTransitionState({ phase: updatedSession.phase });
     
     setTimeout(() => {
       setTransitionState(null);
-      const nextQ = selectNextQuestion({ questionBank, session: updatedSession, bktBeliefs: currentBkt, domainPriors: currentPriors });
+      const nextQ = selectNextQuestion({ questionBank, session: updatedSession, domainBeliefs: currentBkt.domainBeliefs });
       if (!nextQ) {
-         // Rare case: even new phase has no questions available immediately. Recursively check.
          handlePhaseCompleteOrNull(updatedSession, currentBkt, currentPriors, currentPersData);
       } else {
         setCurrentQuestion(nextQ);
@@ -169,34 +146,27 @@ export default function Quiz() {
     try {
       // 1. Evaluate
       let evaluation;
-      if (currentQuestion.type === 'MCQ') {
-        const isCorrect = userAnswer === currentQuestion.correctIndex;
+      if (currentQuestion.type === 'mcq') {
+        const isCorrect = userAnswer === currentQuestion.answer;
         evaluation = {
           score: isCorrect ? 1.0 : 0.0, isCorrect,
           conceptsMatched: isCorrect ? [currentQuestion.concept] : [],
           conceptsMissed: isCorrect ? [] : [currentQuestion.concept],
         };
-      } else if (currentQuestion.type === 'Subjective') {
-        evaluation = scoreSubjective(userAnswer, currentQuestion.rubric);
+      } else if (currentQuestion.type === 'short') {
+        evaluation = scoreSubjective(userAnswer, currentQuestion.expectedPoints || []);
       } else {
-        evaluation = scoreStructured(userAnswer, currentQuestion.rubric);
+        evaluation = scoreStructured(userAnswer, currentQuestion.expectedPoints || []);
       }
 
       // 2. BKT update
-      if (!bktBeliefs.concepts) bktBeliefs.concepts = {};
-      const prevBelief = bktBeliefs.concepts[currentQuestion.concept]?.belief ?? P_INIT;
-      const updatedBelief = updateBelief(prevBelief, evaluation.isCorrect);
+      const currentBelief = bktBeliefs.domainBeliefs[currentQuestion.domain] || 0.5;
+      const updatedBelief = updateBelief(currentBelief, evaluation.isCorrect);
 
       // 3. Update local state
-      const updatedConceptData = {
-        domain: currentQuestion.domain,
-        belief: updatedBelief,
-        questionsAsked: (bktBeliefs.concepts[currentQuestion.concept]?.questionsAsked ?? 0) + 1,
-        lastUpdated: new Date().toISOString(),
-      };
-      
       const newBktBeliefs = {...bktBeliefs};
-      newBktBeliefs.concepts[currentQuestion.concept] = updatedConceptData;
+      if (!newBktBeliefs.domainBeliefs) newBktBeliefs.domainBeliefs = {};
+      newBktBeliefs.domainBeliefs[currentQuestion.domain] = updatedBelief;
       setBktBeliefs(newBktBeliefs);
 
       const newSession = {...session};
@@ -208,23 +178,19 @@ export default function Quiz() {
         setDoc(doc(db, 'quiz_responses', uid, 'answers', currentQuestion.questionId), {
           questionId: currentQuestion.questionId,
           domain: currentQuestion.domain,
-          concept: currentQuestion.concept,
-          bloomLevel: currentQuestion.bloomLevel,
           type: currentQuestion.type,
           phase: newSession.phase,
-          answerIndex: currentQuestion.type === 'MCQ' ? userAnswer : null,
-          answerText: currentQuestion.type === 'Subjective' ? userAnswer : null,
-          answerStructured: currentQuestion.type === 'SubjectiveStructured' ? userAnswer : null,
+          answerIndex: currentQuestion.type === 'mcq' ? userAnswer : null,
+          answerText: currentQuestion.type === 'short' ? userAnswer : null,
+          answerStructured: currentQuestion.type === 'long' ? userAnswer : null,
           isCorrect: evaluation.isCorrect,
           evaluationScore: evaluation.score,
-          conceptsMatched: evaluation.conceptsMatched,
-          conceptsMissed: evaluation.conceptsMissed,
+          waAttributes: currentQuestion.waAttributes || [],
+          bloom: currentQuestion.bloom || 1,
           answeredAt: new Date().toISOString(),
-          skillAttribute: currentQuestion.skillAttribute,
-          waAttributes: currentQuestion.waAttributes,
         }),
         updateDoc(doc(db, 'bkt_beliefs', uid), {
-          [`concepts.${currentQuestion.concept}`]: updatedConceptData,
+          [`domainBeliefs.${currentQuestion.domain}`]: updatedBelief,
         }),
         updateDoc(doc(db, 'quiz_sessions', uid), {
           questionsAnswered: arrayUnion(currentQuestion.questionId),
@@ -233,11 +199,11 @@ export default function Quiz() {
       ]);
 
       // 5. Check phase completion
-      if (isPhaseComplete(newSession.phase, newSession.activeDomains, newBktBeliefs, questionBank, newSession.questionsAnswered)) {
+      if (isPhaseComplete(newSession.phase, newSession.questionsAnswered, questionBank)) {
          await handlePhaseCompleteOrNull(newSession, newBktBeliefs, domainPriors, personalityData);
       } else {
         // 6. Load next question
-        const next = selectNextQuestion({ questionBank, session: newSession, bktBeliefs: newBktBeliefs, domainPriors });
+        const next = selectNextQuestion({ questionBank, session: newSession, domainBeliefs: newBktBeliefs.domainBeliefs });
         if (!next) {
           await handlePhaseCompleteOrNull(newSession, newBktBeliefs, domainPriors, personalityData);
         } else {
@@ -258,14 +224,8 @@ export default function Quiz() {
 
   const isSubmitDisabled = () => {
     if (!currentQuestion) return true;
-    if (currentQuestion.type === 'MCQ') return userAnswer === null;
-    if (currentQuestion.type === 'Subjective') return !userAnswer || userAnswer.trim() === '';
-    if (currentQuestion.type === 'SubjectiveStructured') {
-      return !userAnswer.problemUnderstanding?.trim() || 
-             !userAnswer.approach?.trim() || 
-             !userAnswer.tradeoffs?.trim() || 
-             !userAnswer.decision?.trim();
-    }
+    if (currentQuestion.type === 'mcq') return userAnswer === null;
+    if (currentQuestion.type === 'short' || currentQuestion.type === 'long') return !userAnswer || userAnswer.trim() === '';
     return true;
   };
 
@@ -302,8 +262,7 @@ export default function Quiz() {
       <div className="min-h-screen bg-blue-600 flex flex-col items-center justify-center text-white p-4">
         <h1 className="text-5xl font-extrabold mb-4 animate-pulse">Phase {transitionState.phase}</h1>
         <p className="text-xl opacity-90 text-center max-w-xl">
-          Transitioning to deeper cognition levels. 
-          Focusing on: {transitionState.activeDomains.join(', ')}
+          Transitioning to deeper cognition levels...
         </p>
       </div>
     );
@@ -332,15 +291,20 @@ export default function Quiz() {
         
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-6">
-          <span className="bg-indigo-100 text-indigo-800 text-xs font-bold px-2.5 py-1 rounded">
-            {currentQuestion.domain}
+          <span className="bg-indigo-100 text-indigo-800 text-xs font-bold px-2.5 py-1 rounded capitalize">
+            {currentQuestion.domain.replace('_', ' ')}
           </span>
           <span className="bg-green-100 text-green-800 text-xs font-bold px-2.5 py-1 rounded">
-            {currentQuestion.concept}
+            {currentQuestion.concept.replace('_', ' ')}
           </span>
           <span className="bg-purple-100 text-purple-800 text-xs font-bold px-2.5 py-1 rounded">
-            {currentQuestion.bloomLevel}
+            Bloom: {currentQuestion.bloom}
           </span>
+          {currentQuestion.waAttributes?.map((wa, idx) => (
+            <span key={idx} className="bg-yellow-100 text-yellow-800 text-xs font-bold px-2.5 py-1 rounded">
+              {wa}
+            </span>
+          ))}
         </div>
 
         <h2 className="text-xl font-semibold text-gray-900 mb-8 leading-relaxed">
@@ -348,7 +312,7 @@ export default function Quiz() {
         </h2>
 
         <div className="space-y-4 mb-8">
-          {currentQuestion.type === 'MCQ' && (
+          {currentQuestion.type === 'mcq' && (
             <div className="grid grid-cols-1 gap-3">
               {currentQuestion.options.map((opt, idx) => (
                 <button
@@ -366,37 +330,18 @@ export default function Quiz() {
             </div>
           )}
 
-          {currentQuestion.type === 'Subjective' && (
+          {(currentQuestion.type === 'short' || currentQuestion.type === 'long') && (
             <div>
               <textarea
-                rows="6"
-                placeholder="Type your answer here..."
+                rows={currentQuestion.type === 'long' ? "12" : "5"}
+                placeholder={currentQuestion.type === 'long' ? "Type your detailed answer here..." : "Type your answer here..."}
                 value={userAnswer || ''}
                 onChange={(e) => setUserAnswer(e.target.value)}
                 className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
               ></textarea>
               <div className="text-right text-xs text-gray-500 mt-2">
                 Words: {(userAnswer?.trim()?.split(/\s+/).filter(w=>w.length>0) || []).length}
-                {currentQuestion.rubric?.minWordCount ? ` / Min ${currentQuestion.rubric?.minWordCount}` : ''}
               </div>
-            </div>
-          )}
-
-          {currentQuestion.type === 'SubjectiveStructured' && (
-            <div className="space-y-4">
-              {['problemUnderstanding', 'approach', 'tradeoffs', 'decision'].map(section => (
-                <div key={section}>
-                  <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
-                    {section.replace(/([A-Z])/g, ' $1')}
-                  </label>
-                  <textarea
-                    rows="3"
-                    value={userAnswer?.[section] || ''}
-                    onChange={(e) => setUserAnswer({...userAnswer, [section]: e.target.value})}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                  ></textarea>
-                </div>
-              ))}
             </div>
           )}
         </div>

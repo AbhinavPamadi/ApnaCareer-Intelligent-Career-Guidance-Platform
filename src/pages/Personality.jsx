@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { auth, db } from '../firebase';
-import { personalityQuestions } from '../data/personalityQuestions';
+import { personalityQuestions as rawQuestions } from '../data/personalityQuestions';
 import { computePersonalityVector } from '../engine/personality';
 import { useToast } from '../components/ToastContext';
 
 export default function Personality() {
   const navigate = useNavigate();
   const addToast = useToast();
+  
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [sessionData, setSessionData] = useState(null);
+  
+  const [personalityQuestions, setPersonalityQuestions] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [userResponse, setUserResponse] = useState(null);
 
@@ -19,18 +21,31 @@ export default function Personality() {
     async function loadPersonality() {
       try {
         const uid = auth.currentUser.uid;
-        let snap = await getDoc(doc(db, 'personality_responses', uid));
-        let data = snap.exists() ? snap.data() : { responses: [] };
         
-        if (data.completedAt) {
-          navigate('/dashboard');
-          return;
-        }
+        // Sort questions by order
+        const sortedQuestions = [...rawQuestions].sort((a, b) => (a.order || 0) - (b.order || 0));
+        setPersonalityQuestions(sortedQuestions);
 
-        setSessionData(data);
-        setCurrentIdx(data.responses.length);
+        const snap = await getDoc(doc(db, 'personality_responses', uid));
+        
+        if (snap.exists()) {
+          const data = snap.data();
+          if (data.completedAt) {
+            navigate('/dashboard');
+            return;
+          }
+          const answered = data.responses || [];
+          setCurrentIdx(answered.length);
+        } else {
+          // first time - create document
+          await setDoc(doc(db, 'personality_responses', uid), { 
+            uid, 
+            responses: [] 
+          });
+          setCurrentIdx(0);
+        }
       } catch (err) {
-        addToast("Something went wrong. Your progress is saved. Please try again.", "error");
+        addToast("Something went wrong loading your session. Please try again.", "error");
         console.error(err);
       } finally {
         setLoading(false);
@@ -42,27 +57,29 @@ export default function Personality() {
   const handleSubmit = async () => {
     if (submitting || !userResponse) return;
     setSubmitting(true);
+    
     const uid = auth.currentUser.uid;
     const currentQ = personalityQuestions[currentIdx];
 
     try {
       const responseObj = {
         questionId: currentQ.questionId,
-        response: parseInt(userResponse, 10),
+        response: userResponse,
         answeredAt: new Date().toISOString(),
       };
 
-      const updatedResponses = [...(sessionData.responses || []), responseObj];
-
+      // Save each answer immediately
       await updateDoc(doc(db, 'personality_responses', uid), {
         responses: arrayUnion(responseObj),
-      }).catch(async (e) => {
-        // if document doesn't exist, set it instead of update.
-         await import('firebase/firestore').then(({setDoc}) => setDoc(doc(db, 'personality_responses', uid), { responses: [responseObj] }));
       });
 
-      if (updatedResponses.length >= personalityQuestions.length) {
-        const { personalityVector, domainPriors } = computePersonalityVector(updatedResponses, personalityQuestions);
+      // Get all responses to check if complete
+      const snap = await getDoc(doc(db, 'personality_responses', uid));
+      const allResponses = snap.data().responses;
+
+      if (allResponses.length >= personalityQuestions.length) {
+        // Compute personality vector in browser
+        const { personalityVector, domainPriors } = computePersonalityVector(allResponses, personalityQuestions);
         
         await updateDoc(doc(db, 'personality_responses', uid), {
           personalityVector,
@@ -75,71 +92,92 @@ export default function Personality() {
           assessmentStatus: 'in_progress',
         });
         
-        navigate('/dashboard');
+        navigate('/quiz/intro');
       } else {
-        setSessionData({ ...sessionData, responses: updatedResponses });
-        setCurrentIdx(updatedResponses.length);
+        setCurrentIdx(allResponses.length);
         setUserResponse(null);
       }
     } catch (err) {
       console.error(err);
       addToast("Something went wrong. Your progress is saved. Please try again.", "error");
     } finally {
-      setSubmitting(false);
+      if(currentIdx < personalityQuestions.length - 1) {
+        setSubmitting(false);
+      }
     }
   };
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  if (loading || personalityQuestions.length === 0) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
 
   const currentQ = personalityQuestions[currentIdx];
   if (!currentQ) return <div className="min-h-screen flex items-center justify-center">Redirecting...</div>;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="bg-white max-w-2xl w-full rounded-xl shadow border border-gray-100 p-8">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center pt-16 px-4">
+      <div className="bg-white max-w-2xl w-full rounded-xl shadow-sm border border-gray-100 p-8">
         
-        <div className="w-full bg-gray-200 rounded-full h-2 mb-8">
-          <div className="bg-blue-600 h-2 rounded-full transition-all" style={{ width: `${(currentIdx / personalityQuestions.length) * 100}%` }}></div>
+        <div className="mb-8">
+          <div className="flex justify-between text-sm font-bold text-gray-500 mb-2 uppercase tracking-wider">
+            <span>Progress</span>
+            <span>Question {currentIdx + 1} of {personalityQuestions.length}</span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="bg-blue-600 h-2 rounded-full transition-all" style={{ width: `${(currentIdx / personalityQuestions.length) * 100}%` }}></div>
+          </div>
         </div>
-        <p className="text-sm font-bold text-gray-500 mb-6 uppercase tracking-wider">
-          Question {currentIdx + 1} of {personalityQuestions.length}
-        </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mb-8 leading-relaxed">
+        <h2 className="text-2xl font-bold text-gray-900 mb-10 leading-relaxed text-center">
           {currentQ.text}
         </h2>
 
-        <div className="flex justify-between items-center bg-gray-50 p-6 rounded-lg mb-8 border border-gray-200">
-          <span className="text-sm font-bold text-gray-500 hidden sm:block">Strongly Disagree</span>
-          <div className="flex space-x-2 sm:space-x-4 w-full sm:w-auto justify-between">
-            {[1, 2, 3, 4, 5].map((val) => (
+        {currentQ.type === 'likert' && (
+          <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-50 p-6 rounded-lg mb-8 border border-gray-200 space-y-4 sm:space-y-0">
+            <span className="text-sm font-bold text-gray-500 w-full sm:w-1/4 text-center sm:text-left">Strongly Disagree</span>
+            
+            <div className="flex space-x-2 sm:space-x-4 justify-center flex-1">
+              {[1, 2, 3, 4, 5].map((val) => (
+                <button
+                  key={val}
+                  onClick={() => setUserResponse(val)}
+                  className={`w-12 h-12 rounded-full font-bold text-lg transition shadow-sm border flex items-center justify-center
+                    ${userResponse === val 
+                      ? 'bg-blue-600 text-white border-blue-600 ring-4 ring-blue-100 scale-110 shadow-md' 
+                      : 'bg-white text-gray-700 border-gray-300 hover:border-blue-400 hover:bg-blue-50 hover:shadow-md'}
+                  `}
+                >
+                  {val}
+                </button>
+              ))}
+            </div>
+
+            <span className="text-sm font-bold text-gray-500 w-full sm:w-1/4 text-center sm:text-right">Strongly Agree</span>
+          </div>
+        )}
+
+        {(currentQ.type === 'mcq' || currentQ.type === 'forced_choice') && (
+          <div className="grid grid-cols-1 gap-3 mb-8">
+            {currentQ.options.map((opt, idx) => (
               <button
-                key={val}
-                onClick={() => setUserResponse(val)}
-                className={`w-12 h-12 rounded-full font-bold text-lg transition shadow-sm border
-                  ${userResponse === val 
-                    ? 'bg-blue-600 text-white border-blue-600 ring-4 ring-blue-100 scale-110' 
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-blue-400 hover:bg-blue-50'}
+                key={idx}
+                onClick={() => setUserResponse(opt)}
+                className={`w-full text-left p-4 rounded-lg border transition shadow-sm
+                  ${userResponse === opt 
+                    ? 'border-blue-600 bg-blue-50 text-blue-900 ring-2 ring-blue-100 font-semibold' 
+                    : 'border-gray-200 hover:border-blue-300 bg-white text-gray-700 hover:bg-blue-50'}
                 `}
               >
-                {val}
+                {opt}
               </button>
             ))}
           </div>
-          <span className="text-sm font-bold text-gray-500 hidden sm:block">Strongly Agree</span>
-        </div>
-        
-        <div className="flex justify-between sm:hidden mb-8 text-xs text-gray-500 px-2 font-bold">
-          <span>Strongly Disagree</span>
-          <span>Strongly Agree</span>
-        </div>
+        )}
 
         <button
           onClick={handleSubmit}
           disabled={!userResponse || submitting}
           className="w-full bg-blue-600 text-white font-bold py-4 rounded-lg shadow-sm hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {submitting ? 'Saving...' : 'Next Question'}
+          {submitting ? 'Saving...' : 'Next'}
         </button>
 
       </div>

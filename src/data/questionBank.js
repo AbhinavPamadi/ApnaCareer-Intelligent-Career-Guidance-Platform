@@ -1,11 +1,10 @@
-import dsaQuestions from '../../questionnaire/quiz/dsa_questions.json';
-import webdevQuestions from '../../questionnaire/quiz/webdev_questions.json';
-import mlQuestions from '../../questionnaire/quiz/ml_questions.json';
-import systemsQuestions from '../../questionnaire/quiz/systems_questions.json';
+import phase1Questions from '../../questionnaire/domain_phase1.json';
+import phase2Questions from '../../questionnaire/domain_phase2.json';
+import phase3Questions from '../../questionnaire/domain_phase3.json';
 
+// Ensure backward compatibility of 'type' if needed, but our new questionSelector expects 'mcq', 'short', 'long'
 export const questionBank = [
-  ...dsaQuestions,
-  ...webdevQuestions,
-  ...mlQuestions,
-  ...systemsQuestions,
+  ...phase1Questions,
+  ...phase2Questions,
+  ...phase3Questions,
 ];

@@ -83,7 +83,7 @@ export default function Results() {
   };
 
   const handleDownload = () => {
-    alert('Coming soon');
+    window.print();
   };
 
   if (loading) return <div className="min-h-screen flex items-center justify-center">Loading Results...</div>;
@@ -233,26 +233,7 @@ export default function Results() {
             </div>
           </div>
 
-          {/* F. Skill Attribute Scores */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <h3 className="text-xl font-bold mb-6">Functional Engineering Skills</h3>
-            <div className="space-y-6">
-              {Object.entries(results.skillAttributes || {}).map(([skill, val]) => (
-                <div key={skill} className="w-full">
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm font-bold text-gray-700 capitalize">
-                      {skill.replace(/([A-Z])/g, ' $1')}
-                    </span>
-                    <span className="text-sm font-bold text-gray-500">{Math.round(val * 100)}%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-blue-600 h-2.5 rounded-full transition-all" style={{ width: `${Math.round(val * 100)}%` }}></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
+          {/* F. Skill Attribute Scores Removed */}
         </div>
 
         {/* G. Role Recommendation Cards */}
@@ -272,25 +253,19 @@ export default function Results() {
 
         {/* D & H: Concepts Breakdown and Skill Gaps */}
         <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-          <h3 className="text-2xl font-bold mb-6 border-b border-gray-100 pb-3 text-gray-900">Knowledge Concept Mapping</h3>
+          <h3 className="text-2xl font-bold mb-6 border-b border-gray-100 pb-3 text-gray-900">Domain Probabilities Mapping</h3>
           
-          <div className="space-y-8">
-            {Object.entries(results.conceptProfile || {}).map(([domain, concepts]) => (
-              <div key={domain}>
-                <h4 className="text-lg font-bold text-gray-800 mb-4">{domain} Paradigm</h4>
-                <div className="flex flex-wrap gap-3">
-                  {Object.entries(concepts).map(([conceptName, data]) => {
-                    let badgeClass = 'bg-gray-100 text-gray-800';
-                    if (data.status === 'Strong') badgeClass = 'bg-green-100 text-green-800 border border-green-200';
-                    else if (data.status === 'Weak') badgeClass = 'bg-red-100 text-red-800 border border-red-200';
-                    else badgeClass = 'bg-yellow-100 text-yellow-800 border border-yellow-200';
-
-                    return (
-                      <span key={conceptName} className={`px-3 py-1.5 rounded-full text-xs font-bold ${badgeClass}`}>
-                         {conceptName} &bull; {data.status}
-                      </span>
-                    )
-                  })}
+          <div className="space-y-4">
+            {Object.entries(results.domainProbabilities || {}).map(([domain, prob]) => (
+              <div key={domain} className="w-full">
+                <div className="flex justify-between mb-1">
+                  <span className="text-sm font-bold text-gray-700 capitalize">
+                    {domain.replace('_', ' ')}
+                  </span>
+                  <span className="text-sm font-bold text-gray-500">{Math.round(prob * 100)}% Match</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2.5">
+                  <div className="bg-blue-600 h-2.5 rounded-full transition-all" style={{ width: `${Math.round(prob * 100)}%` }}></div>
                 </div>
               </div>
             ))}

@@ -1,0 +1,647 @@
+[
+  {
+    "questionId": "dsa_long_001",
+    "domain": "dsa",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design an efficient system to find top K frequent elements in a large dataset.",
+    "expectedPoints": [
+      "Hashmap frequency count",
+      "Heap or priority queue",
+      "Optimize for large data"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "web_long_001",
+    "domain": "web_dev",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a scalable URL shortener system.",
+    "expectedPoints": [
+      "Hashing",
+      "Database design",
+      "Collision handling",
+      "Scalability"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "ml_long_001",
+    "domain": "ml",
+    "bloom": 5,
+    "type": "long",
+    "text": "How would you build a recommendation system?",
+    "expectedPoints": [
+      "Collaborative filtering",
+      "Content-based filtering",
+      "Data preprocessing",
+      "Evaluation metrics"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "db_long_001",
+    "domain": "databases",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a database for an e-commerce platform.",
+    "expectedPoints": [
+      "Users, products, orders",
+      "Relationships",
+      "Indexing",
+      "Scalability"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "dsa_long_002",
+    "domain": "dsa",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a system for a real-time leaderboard supporting millions of users.",
+    "expectedPoints": [
+      "Redis Sorted Sets (ZSET)",
+      "Logarithmic time complexity for updates",
+      "Sharding strategy for high write throughput",
+      "WebSocket for real-time delivery"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "dsa_long_003",
+    "domain": "dsa",
+    "bloom": 5,
+    "type": "long",
+    "text": "Explain how you would design a distributed LRU cache.",
+    "expectedPoints": [
+      "Consistent hashing for data distribution",
+      "Doubly linked list and hashmap (local cache)",
+      "Eviction policy and synchronization",
+      "Network latency considerations"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "dsa_long_004",
+    "domain": "dsa",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a 'People You May Know' feature for a social network.",
+    "expectedPoints": [
+      "Graph database (Neo4j) vs Relational",
+      "BFS for N-degree connections",
+      "Triangle counting or Jaccard similarity",
+      "Batch vs Real-time processing"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "web_long_002",
+    "domain": "web_dev",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a high-availability video streaming platform like YouTube.",
+    "expectedPoints": [
+      "Content Delivery Network (CDN)",
+      "Transcoding and adaptive bitrate streaming",
+      "Distributed storage (Blob stores)",
+      "Microservices for metadata and search"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "web_long_003",
+    "domain": "web_dev",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a real-time collaborative code editor (e.g., Google Docs for code).",
+    "expectedPoints": [
+      "Operational Transformation (OT) or CRDTs",
+      "WebSockets for bidirectional communication",
+      "Concurrency control and conflict resolution",
+      "State persistence and versioning"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "web_long_004",
+    "domain": "web_dev",
+    "bloom": 5,
+    "type": "long",
+    "text": "Propose an architecture for a global notification system.",
+    "expectedPoints": [
+      "Message queues (Kafka/RabbitMQ)",
+      "Priority-based delivery",
+      "Rate limiting and idempotency",
+      "Multi-channel support (Push, SMS, Email)"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "ml_long_002",
+    "domain": "ml",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design an end-to-end ML pipeline for credit card fraud detection.",
+    "expectedPoints": [
+      "Feature engineering on transactional data",
+      "Handling imbalanced datasets (SMOTE/undersampling)",
+      "Model deployment (latency vs accuracy)",
+      "Monitoring and feedback loops"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "ml_long_003",
+    "domain": "ml",
+    "bloom": 5,
+    "type": "long",
+    "text": "How would you design an image search engine based on visual similarity?",
+    "expectedPoints": [
+      "CNN for feature extraction (embeddings)",
+      "Vector database for indexing",
+      "Approximate Nearest Neighbors (ANN)",
+      "Ranking and reranking logic"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "ml_long_004",
+    "domain": "ml",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a system for real-time sentiment analysis of Twitter/X streams.",
+    "expectedPoints": [
+      "Stream processing (Spark/Flink)",
+      "NLP tokenization and vectorization",
+      "Pre-trained LLM or BERT integration",
+      "Dashboard visualization for trends"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "db_long_002",
+    "domain": "databases",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a database schema and scaling strategy for a global ride-sharing app.",
+    "expectedPoints": [
+      "Geospatial indexing (Quadtree/S2)",
+      "PostGIS or NoSQL for location updates",
+      "Sharding by geographic region",
+      "Read replicas for driver/rider matching"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "db_long_003",
+    "domain": "databases",
+    "bloom": 5,
+    "type": "long",
+    "text": "Compare and design a system using SQL vs NoSQL for a messaging app like WhatsApp.",
+    "expectedPoints": [
+      "Message ordering and consistency",
+      "Key-value stores for user sessions",
+      "Wide-column stores (Cassandra) for chat history",
+      "Replication and partition tolerance"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "db_long_004",
+    "domain": "databases",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a data warehousing solution for a retail giant's analytics.",
+    "expectedPoints": [
+      "ETL/ELT pipeline design",
+      "Star or Snowflake schema",
+      "Columnar storage (BigQuery/Redshift)",
+      "Data partitioning by time/region"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "os_long_001",
+    "domain": "operating_systems",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a custom file system for a write-heavy application.",
+    "expectedPoints": [
+      "Log-structured file system (LFS)",
+      "Inode management and indexing",
+      "Garbage collection and compaction",
+      "Crash recovery mechanisms"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "os_long_002",
+    "domain": "operating_systems",
+    "bloom": 5,
+    "type": "long",
+    "text": "Propose an architecture for a container orchestration engine.",
+    "expectedPoints": [
+      "Control plane (Scheduler/API Server)",
+      "Worker nodes and Kubelet-style agents",
+      "State management (etcd)",
+      "Networking and Service Discovery"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "os_long_003",
+    "domain": "operating_systems",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a distributed lock manager to coordinate resource access across servers.",
+    "expectedPoints": [
+      "Mutual exclusion algorithm",
+      "Handling node failures/Timeouts",
+      "Lease mechanisms",
+      "Consensus protocols (Raft/Paxos)"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "net_long_001",
+    "domain": "networking",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a globally distributed Anycast DNS system.",
+    "expectedPoints": [
+      "BGP routing and Anycast",
+      "Geographic load balancing",
+      "Caching layers and TTL",
+      "DDoS mitigation strategies"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "net_long_002",
+    "domain": "networking",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a secure, low-latency Virtual Private Network (VPN) architecture.",
+    "expectedPoints": [
+      "Tunneling protocols (WireGuard/IPSec)",
+      "Authentication and Key Exchange",
+      "Traffic encryption and overhead",
+      "Split tunneling vs Full tunneling"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "net_long_003",
+    "domain": "networking",
+    "bloom": 5,
+    "type": "long",
+    "text": "Propose a network design for a multi-region cloud application.",
+    "expectedPoints": [
+      "VPC Peering and Transit Gateways",
+      "Latency-based routing",
+      "Edge computing integration",
+      "Disaster recovery and failover"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "sys_long_001",
+    "domain": "system_design",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a web crawler capable of indexing the entire web.",
+    "expectedPoints": [
+      "URL frontier and priority",
+      "Deduplication (Bloom filters)",
+      "Politeness policy and Robots.txt",
+      "Distributed architecture"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "sys_long_002",
+    "domain": "system_design",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design an API Gateway for a complex microservices ecosystem.",
+    "expectedPoints": [
+      "Authentication and Authorization",
+      "Rate limiting and Throttling",
+      "Request routing and aggregation",
+      "Logging and Monitoring"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "sys_long_003",
+    "domain": "system_design",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a scalable logs monitoring and alerting system (e.g., ELK stack).",
+    "expectedPoints": [
+      "Log ingestion and buffering",
+      "Indexing for search",
+      "Query language/engine",
+      "Threshold-based alerting"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "sys_long_004",
+    "domain": "system_design",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a storage system for a large-scale photo-sharing app (e.g., Instagram).",
+    "expectedPoints": [
+      "Object storage (S3) for images",
+      "CDN for global delivery",
+      "Metadata database (SQL vs NoSQL)",
+      "Image processing (resizing/filters) on upload"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "sys_long_005",
+    "domain": "system_design",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a highly available and scalable E-wallet system.",
+    "expectedPoints": [
+      "Transaction ACID compliance",
+      "Double-entry bookkeeping",
+      "Optimistic vs Pessimistic locking",
+      "Audit trails and reconciliation"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "sec_long_001",
+    "domain": "security",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a Zero Trust Architecture for a corporate network.",
+    "expectedPoints": [
+      "Identity-aware proxy",
+      "Micro-segmentation",
+      "Continuous verification",
+      "Least privilege access"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "sec_long_002",
+    "domain": "security",
+    "bloom": 5,
+    "type": "long",
+    "text": "Propose a secure key management system for a cloud service.",
+    "expectedPoints": [
+      "Hardware Security Modules (HSM)",
+      "Key rotation and versioning",
+      "Access control policies (IAM)",
+      "Audit logging for key usage"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "sec_long_003",
+    "domain": "security",
+    "bloom": 5,
+    "type": "long",
+    "text": "How would you design a system to detect and mitigate SQL injection at scale?",
+    "expectedPoints": [
+      "Parameterized queries/ORMs",
+      "Web Application Firewall (WAF)",
+      "Static/Dynamic Analysis (SAST/DAST)",
+      "Database activity monitoring"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "ml_long_005",
+    "domain": "ml",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design an Autocomplete/Search Suggestion system using ML.",
+    "expectedPoints": [
+      "Trie data structure with weights",
+      "Language models (n-grams/transformers)",
+      "Frequency and personalized ranking",
+      "Low-latency retrieval (<20ms)"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "web_long_005",
+    "domain": "web_dev",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a scalable analytics dashboard for tracking web traffic in real-time.",
+    "expectedPoints": [
+      "JavaScript beacons/trackers",
+      "Kafka ingestion",
+      "Time-series database (InfluxDB/Prometheus)",
+      "Pre-aggregated views for performance"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "dsa_long_005",
+    "domain": "dsa",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a data structure for a large-scale Auto-Complete system.",
+    "expectedPoints": [
+      "Prefix Tree (Trie) variations",
+      "Caching frequent prefixes",
+      "Distributed storage of the Trie",
+      "Merging results from different shards"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "sys_long_006",
+    "domain": "system_design",
+    "bloom": 5,
+    "type": "long",
+    "text": "Design a rate-limiting system for a high-traffic public API.",
+    "expectedPoints": [
+      "Token Bucket or Leaky Bucket algorithm",
+      "Distributed counters (Redis)",
+      "Hard vs Soft limits",
+      "Handling race conditions in distributed environments"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2",
+      "PO3",
+      "PO4"
+    ]
+  }
+]

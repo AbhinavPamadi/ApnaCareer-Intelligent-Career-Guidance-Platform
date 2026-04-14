@@ -1,0 +1,578 @@
+[
+  {
+    "questionId": "dsa_short_001",
+    "domain": "dsa",
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain how binary search works.",
+    "expectedPoints": [
+      "Divide array",
+      "Check middle element",
+      "Reduce search space"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_short_002",
+    "domain": "dsa",
+    "bloom": 4,
+    "type": "short",
+    "text": "When would you prefer merge sort over quicksort?",
+    "expectedPoints": [
+      "Stable sorting",
+      "Guaranteed O(n log n)",
+      "Linked lists"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_short_001",
+    "domain": "web_dev",
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain the request-response cycle.",
+    "expectedPoints": [
+      "Client sends request",
+      "Server processes",
+      "Response returned"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_short_002",
+    "domain": "web_dev",
+    "bloom": 4,
+    "type": "short",
+    "text": "Why use lazy loading in frontend?",
+    "expectedPoints": [
+      "Reduce initial load",
+      "Improve performance",
+      "Load on demand"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_short_001",
+    "domain": "ml",
+    "bloom": 3,
+    "type": "short",
+    "text": "What is overfitting?",
+    "expectedPoints": [
+      "Model memorizes data",
+      "Poor generalization",
+      "High training accuracy"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_short_001",
+    "domain": "databases",
+    "bloom": 4,
+    "type": "short",
+    "text": "Explain indexing and its trade-offs.",
+    "expectedPoints": [
+      "Faster reads",
+      "Slower writes",
+      "Extra storage"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_short_003",
+    "domain": "dsa",
+    "bloom": 3,
+    "type": "short",
+    "text": "How does a hash table handle collisions using chaining?",
+    "expectedPoints": [
+      "Linked list at index",
+      "Store multiple keys",
+      "Traverse list on clash"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_short_004",
+    "domain": "dsa",
+    "bloom": 4,
+    "type": "short",
+    "text": "Contrast a Stack and a Queue in terms of data access and typical use cases.",
+    "expectedPoints": [
+      "LIFO vs FIFO",
+      "Push/Pop vs Enqueue/Dequeue",
+      "Recursion vs Task Scheduling"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_short_005",
+    "domain": "dsa",
+    "bloom": 3,
+    "type": "short",
+    "text": "Describe the process of finding the shortest path using Dijkstra's algorithm.",
+    "expectedPoints": [
+      "Greedy approach",
+      "Relaxing edges",
+      "Priority queue for nodes"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_short_006",
+    "domain": "dsa",
+    "bloom": 4,
+    "type": "short",
+    "text": "Explain why dynamic programming is preferred over simple recursion for the Fibonacci sequence.",
+    "expectedPoints": [
+      "Eliminate redundant calls",
+      "Memoization/Tabulation",
+      "Exponential to Linear time"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_short_007",
+    "domain": "dsa",
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain the concept of a balanced Binary Search Tree (BST).",
+    "expectedPoints": [
+      "Height difference limit",
+      "O(log n) operations",
+      "Preventing skewness"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_short_003",
+    "domain": "web_dev",
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain how Cross-Origin Resource Sharing (CORS) works.",
+    "expectedPoints": [
+      "Browser security mechanism",
+      "HTTP headers (Origin)",
+      "Allow/Deny cross-site requests"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_short_004",
+    "domain": "web_dev",
+    "bloom": 4,
+    "type": "short",
+    "text": "Analyze the benefits of using a Virtual DOM in frameworks like React.",
+    "expectedPoints": [
+      "Minimize direct DOM manipulation",
+      "Diffing algorithm",
+      "Batch updates for performance"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_short_005",
+    "domain": "web_dev",
+    "bloom": 3,
+    "type": "short",
+    "text": "What is the role of a middleware in an Express.js application?",
+    "expectedPoints": [
+      "Intersects request-response",
+      "Execute code/Modify objects",
+      "Pass control with next()"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_short_006",
+    "domain": "web_dev",
+    "bloom": 4,
+    "type": "short",
+    "text": "Why is Server-Side Rendering (SSR) often preferred for SEO-heavy websites?",
+    "expectedPoints": [
+      "Fully rendered HTML",
+      "Faster 'Time to Content'",
+      "Easier crawler indexing"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_short_007",
+    "domain": "web_dev",
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain the purpose and usage of JSON Web Tokens (JWT).",
+    "expectedPoints": [
+      "Stateless authentication",
+      "Digitally signed payload",
+      "Header/Payload/Signature structure"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_short_002",
+    "domain": "ml",
+    "bloom": 3,
+    "type": "short",
+    "text": "How does K-Fold Cross-Validation improve model evaluation?",
+    "expectedPoints": [
+      "Reduce variance in metrics",
+      "Use all data for testing",
+      "Multiple train-test splits"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_short_003",
+    "domain": "ml",
+    "bloom": 4,
+    "type": "short",
+    "text": "Compare and contrast L1 (Lasso) and L2 (Ridge) regularization.",
+    "expectedPoints": [
+      "Sparsity vs Weight decay",
+      "Feature selection (L1)",
+      "Penalty on absolute vs squared"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_short_004",
+    "domain": "ml",
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain the 'Kernel Trick' in Support Vector Machines.",
+    "expectedPoints": [
+      "High-dimensional mapping",
+      "Linear separation of non-linear data",
+      "Avoid explicit coordinates"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_short_005",
+    "domain": "ml",
+    "bloom": 4,
+    "type": "short",
+    "text": "What is the difference between 'Bagging' and 'Boosting' in ensemble learning?",
+    "expectedPoints": [
+      "Parallel vs Sequential",
+      "Variance reduction vs Bias reduction",
+      "Independent vs Corrective learners"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_short_006",
+    "domain": "ml",
+    "bloom": 3,
+    "type": "short",
+    "text": "How does Gradient Descent optimize a cost function?",
+    "expectedPoints": [
+      "Iterative weight updates",
+      "Negative gradient direction",
+      "Minimize error/loss"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_short_002",
+    "domain": "databases",
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain the concept of 'Consistency' in the CAP theorem.",
+    "expectedPoints": [
+      "Every read receives latest write",
+      "Uniform data across nodes",
+      "System state synchronization"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_short_003",
+    "domain": "databases",
+    "bloom": 4,
+    "type": "short",
+    "text": "Compare SQL and NoSQL databases regarding schema flexibility and scaling.",
+    "expectedPoints": [
+      "Rigid vs Dynamic schema",
+      "Vertical vs Horizontal scaling",
+      "ACID vs BASE compliance"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_short_004",
+    "domain": "databases",
+    "bloom": 3,
+    "type": "short",
+    "text": "What is the purpose of a Foreign Key in a relational database?",
+    "expectedPoints": [
+      "Referential integrity",
+      "Link two tables",
+      "Enforce valid relationships"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_short_005",
+    "domain": "databases",
+    "bloom": 4,
+    "type": "short",
+    "text": "Describe the trade-offs of using a Denormalized database schema.",
+    "expectedPoints": [
+      "Improved read performance",
+      "Data redundancy risks",
+      "Complex update logic"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_short_006",
+    "domain": "databases",
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain how Database Sharding works.",
+    "expectedPoints": [
+      "Horizontal partitioning",
+      "Splitting large datasets",
+      "Distributed across servers"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_short_001",
+    "domain": "operating_systems",
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain the concept of 'Context Switching'.",
+    "expectedPoints": [
+      "Saving process state",
+      "Loading new process state",
+      "CPU time sharing"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_short_002",
+    "domain": "operating_systems",
+    "bloom": 4,
+    "type": "short",
+    "text": "Compare Paging and Segmentation in memory management.",
+    "expectedPoints": [
+      "Fixed vs Variable blocks",
+      "Physical vs Logical view",
+      "Internal vs External fragmentation"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_short_003",
+    "domain": "operating_systems",
+    "bloom": 3,
+    "type": "short",
+    "text": "What is the 'Critical Section' problem?",
+    "expectedPoints": [
+      "Shared resource access",
+      "Race conditions",
+      "Mutual exclusion requirement"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_short_004",
+    "domain": "operating_systems",
+    "bloom": 3,
+    "type": "short",
+    "text": "Describe the function of the Virtual Memory.",
+    "expectedPoints": [
+      "Execute larger programs",
+      "Abstraction of physical RAM",
+      "Disk used as temporary storage"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_short_001",
+    "domain": "networking",
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain the TCP Three-Way Handshake.",
+    "expectedPoints": [
+      "SYN, SYN-ACK, ACK",
+      "Establish connection",
+      "Sequence number sync"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_short_002",
+    "domain": "networking",
+    "bloom": 4,
+    "type": "short",
+    "text": "Analyze the differences between IPv4 and IPv6.",
+    "expectedPoints": [
+      "Address space size",
+      "Hexadecimal vs Decimal",
+      "Built-in IPSec/Auto-config"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_short_003",
+    "domain": "networking",
+    "bloom": 3,
+    "type": "short",
+    "text": "What is the role of a Subnet Mask?",
+    "expectedPoints": [
+      "Distinguish Network/Host IDs",
+      "Logical grouping",
+      "Routing efficiency"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_short_004",
+    "domain": "networking",
+    "bloom": 4,
+    "type": "short",
+    "text": "Explain the 'Load Balancing' concept in high-traffic networks.",
+    "expectedPoints": [
+      "Distribute incoming traffic",
+      "Prevent server overload",
+      "Ensure high availability"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_short_005",
+    "domain": "networking",
+    "bloom": 3,
+    "type": "short",
+    "text": "How does the DHCP protocol work?",
+    "expectedPoints": [
+      "Automatic IP assignment",
+      "DORA process",
+      "Lease time management"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "sec_short_001",
+    "domain": "security",
+    "bloom": 4,
+    "type": "short",
+    "text": "Explain the difference between Symmetric and Asymmetric encryption.",
+    "expectedPoints": [
+      "Single vs Pair of keys",
+      "Speed vs Key exchange security",
+      "AES vs RSA examples"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  }
+]
