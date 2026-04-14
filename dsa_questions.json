@@ -1,0 +1,94 @@
+[
+  {
+    "questionId": "q_dsa_001",
+    "domain": "DSA",
+    "concept": "BinarySearch",
+    "bloomLevel": "Remember",
+    "difficulty": "Easy",
+    "waAttributes": ["PO1"],
+    "skillAttribute": "Problem Solving",
+    "type": "MCQ",
+    "text": "What is the time complexity of Binary Search on a sorted array?",
+    "options": ["O(n)", "O(log n)", "O(n²)", "O(1)"],
+    "correctIndex": 1,
+    "rubric": null
+  },
+  {
+    "questionId": "q_dsa_002",
+    "domain": "DSA",
+    "concept": "BinarySearch",
+    "bloomLevel": "Apply",
+    "difficulty": "Medium",
+    "waAttributes": ["PO1", "PO2"],
+    "skillAttribute": "Problem Solving",
+    "type": "MCQ",
+    "text": "Given a sorted array of 1000 elements, what is the maximum number of comparisons needed to find an element using Binary Search?",
+    "options": ["10", "100", "1000", "500"],
+    "correctIndex": 0,
+    "rubric": null
+  },
+  {
+    "questionId": "q_dsa_003",
+    "domain": "DSA",
+    "concept": "GraphTraversal",
+    "bloomLevel": "Understand",
+    "difficulty": "Easy",
+    "waAttributes": ["PO1"],
+    "skillAttribute": "Analysis",
+    "type": "MCQ",
+    "text": "Which data structure is used internally by BFS (Breadth-First Search)?",
+    "options": ["Stack", "Queue", "Heap", "Tree"],
+    "correctIndex": 1,
+    "rubric": null
+  },
+  {
+    "questionId": "q_dsa_004",
+    "domain": "DSA",
+    "concept": "DynamicProgramming",
+    "bloomLevel": "Analyze",
+    "difficulty": "Hard",
+    "waAttributes": ["PO2", "PO4"],
+    "skillAttribute": "Problem Solving",
+    "type": "Subjective",
+    "text": "Explain the difference between memoization and tabulation in Dynamic Programming. When would you prefer one over the other?",
+    "options": null,
+    "correctIndex": null,
+    "rubric": {
+      "keyConcepts": ["memoization", "tabulation", "top-down", "bottom-up", "recursion", "iteration"],
+      "supportingConcepts": ["overlapping subproblems", "optimal substructure", "cache", "space complexity"],
+      "logicalConnectors": ["because", "therefore", "however", "whereas", "trade-off", "prefer"],
+      "minWordCount": 40
+    }
+  },
+  {
+    "questionId": "q_dsa_005",
+    "domain": "DSA",
+    "concept": "SystemDesign",
+    "bloomLevel": "Create",
+    "difficulty": "Hard",
+    "waAttributes": ["PO3", "PO8"],
+    "skillAttribute": "Design",
+    "type": "SubjectiveStructured",
+    "text": "Design a rate limiter system that allows a maximum of 100 requests per minute per user.",
+    "options": null,
+    "correctIndex": null,
+    "rubric": {
+      "problemUnderstanding": {
+        "keyConcepts": ["rate limit", "requests per minute", "per user", "throttle"],
+        "weight": 0.25
+      },
+      "approach": {
+        "keyConcepts": ["token bucket", "sliding window", "counter", "redis", "timestamp"],
+        "weight": 0.25
+      },
+      "tradeoffs": {
+        "keyConcepts": ["memory", "accuracy", "distributed", "latency", "consistency"],
+        "weight": 0.25
+      },
+      "decision": {
+        "keyConcepts": ["recommend", "justify", "best", "reason"],
+        "weight": 0.25
+      }
+    }
+  }
+]
