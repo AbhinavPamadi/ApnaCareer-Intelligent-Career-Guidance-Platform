@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { doc, getDoc, writeBatch, collection, getDocs } from 'firebase/firestore';
+import { doc, getDoc, writeBatch, collection, getDocs, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import Navbar from '../components/Navbar';
 import { useToast } from '../components/ToastContext';
@@ -49,6 +49,35 @@ export default function Dashboard() {
 
   const handleLogout = async () => {
     // Navbar handles logout, retaining if needed but mostly navbar will hook it
+  };
+
+  const handleStartAssessment = async () => {
+    const user = auth.currentUser;
+    if (!user) {
+      navigate('/auth');
+      return;
+    }
+
+    try {
+      await updateDoc(doc(db, 'users', user.uid), {
+        assessmentStatus: 'in_progress',
+        personalityComplete: false,
+        quizComplete: false,
+        currentPhase: 1,
+      });
+      setUserData((prev) => ({
+        ...prev,
+        assessmentStatus: 'in_progress',
+        personalityComplete: false,
+        quizComplete: false,
+        currentPhase: 1,
+      }));
+    } catch (err) {
+      console.error(err);
+      // Continue to personality route even if status update fails.
+    }
+
+    navigate('/personality');
   };
 
   const handleReset = async () => {
@@ -124,7 +153,7 @@ export default function Dashboard() {
               Your journey begins here. You will first take a brief personality quiz to help us understand your traits, followed by an adaptive technical assessment aligned with the Washington Accord.
             </p>
             <button
-              onClick={() => navigate('/personality')}
+              onClick={handleStartAssessment}
               className="inline-block bg-blue-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow hover:bg-blue-700 transition"
             >
               Start Assessment

@@ -16,15 +16,43 @@ export default function Personality() {
   const [personalityQuestions, setPersonalityQuestions] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [userResponse, setUserResponse] = useState(null);
+  const [loadingMessage, setLoadingMessage] = useState('Preparing your quiz...');
+
+  const finalizePersonality = async (uid, responses, questions) => {
+    const { personalityVector, domainPriors } = computePersonalityVector(responses, questions);
+
+    await updateDoc(doc(db, 'personality_responses', uid), {
+      personalityVector,
+      domainPriors,
+      completedAt: new Date().toISOString(),
+    });
+
+    await updateDoc(doc(db, 'users', uid), {
+      personalityComplete: true,
+      assessmentStatus: 'in_progress',
+    });
+  };
 
   useEffect(() => {
     async function loadPersonality() {
       try {
-        const uid = auth.currentUser.uid;
+        setLoadingMessage('Preparing your quiz...');
+        const user = auth.currentUser;
+        if (!user) {
+          navigate('/auth');
+          return;
+        }
+        const uid = user.uid;
         
         // Sort questions by order
         const sortedQuestions = [...rawQuestions].sort((a, b) => (a.order || 0) - (b.order || 0));
+        if (sortedQuestions.length === 0) {
+          addToast("Personality questions are not available right now. Please try again.", "error");
+          navigate('/dashboard');
+          return;
+        }
         setPersonalityQuestions(sortedQuestions);
+        setLoadingMessage('Restoring your saved progress...');
 
         const snap = await getDoc(doc(db, 'personality_responses', uid));
         
@@ -35,6 +63,11 @@ export default function Personality() {
             return;
           }
           const answered = data.responses || [];
+          if (answered.length >= sortedQuestions.length) {
+            await finalizePersonality(uid, answered, sortedQuestions);
+            navigate('/quiz/intro');
+            return;
+          }
           setCurrentIdx(answered.length);
         } else {
           // first time - create document
@@ -56,9 +89,14 @@ export default function Personality() {
 
   const handleSubmit = async () => {
     if (submitting || !userResponse) return;
+    const user = auth.currentUser;
+    if (!user) {
+      navigate('/auth');
+      return;
+    }
     setSubmitting(true);
     
-    const uid = auth.currentUser.uid;
+    const uid = user.uid;
     const currentQ = personalityQuestions[currentIdx];
 
     try {
@@ -78,20 +116,7 @@ export default function Personality() {
       const allResponses = snap.data().responses;
 
       if (allResponses.length >= personalityQuestions.length) {
-        // Compute personality vector in browser
-        const { personalityVector, domainPriors } = computePersonalityVector(allResponses, personalityQuestions);
-        
-        await updateDoc(doc(db, 'personality_responses', uid), {
-          personalityVector,
-          domainPriors,
-          completedAt: new Date().toISOString(),
-        });
-        
-        await updateDoc(doc(db, 'users', uid), {
-          personalityComplete: true,
-          assessmentStatus: 'in_progress',
-        });
-        
+        await finalizePersonality(uid, allResponses, personalityQuestions);
         navigate('/quiz/intro');
       } else {
         setCurrentIdx(allResponses.length);
@@ -107,7 +132,22 @@ export default function Personality() {
     }
   };
 
-  if (loading || personalityQuestions.length === 0) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
+        <p className="text-2xl font-bold text-gray-900">Preparing your quiz...</p>
+        <p className="text-gray-600 mt-2">{loadingMessage}</p>
+      </div>
+    );
+  }
+
+  if (personalityQuestions.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-gray-600">
+        No questions available right now.
+      </div>
+    );
+  }
 
   const currentQ = personalityQuestions[currentIdx];
   if (!currentQ) return <div className="min-h-screen flex items-center justify-center">Redirecting...</div>;

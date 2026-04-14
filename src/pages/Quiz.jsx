@@ -272,6 +272,9 @@ export default function Quiz() {
     return <div className="min-h-screen flex items-center justify-center">Processing...</div>;
   }
 
+  const domainLabel = (currentQuestion.domain || 'general').replace('_', ' ');
+  const conceptLabel = (currentQuestion.concept || 'general').replace('_', ' ');
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center pt-8 pb-12 px-4 sm:px-6">
       
@@ -292,10 +295,10 @@ export default function Quiz() {
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-6">
           <span className="bg-indigo-100 text-indigo-800 text-xs font-bold px-2.5 py-1 rounded capitalize">
-            {currentQuestion.domain.replace('_', ' ')}
+            {domainLabel}
           </span>
           <span className="bg-green-100 text-green-800 text-xs font-bold px-2.5 py-1 rounded">
-            {currentQuestion.concept.replace('_', ' ')}
+            {conceptLabel}
           </span>
           <span className="bg-purple-100 text-purple-800 text-xs font-bold px-2.5 py-1 rounded">
             Bloom: {currentQuestion.bloom}
