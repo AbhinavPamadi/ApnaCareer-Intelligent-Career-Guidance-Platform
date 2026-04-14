@@ -1,0 +1,367 @@
+[
+  {
+    "questionId": "p_001",
+    "type": "likert",
+    "text": "I enjoy breaking down complex problems into smaller parts.",
+    "traitMapped": ["analytical"],
+    "reversed": false,
+    "order": 1
+  },
+  {
+    "questionId": "p_002",
+    "type": "likert",
+    "text": "I often think about how to make systems more efficient.",
+    "traitMapped": ["optimization"],
+    "reversed": false,
+    "order": 2
+  },
+  {
+    "questionId": "p_003",
+    "type": "likert",
+    "text": "I prefer working with clear structure and defined requirements.",
+    "traitMapped": ["structure"],
+    "reversed": false,
+    "order": 3
+  },
+  {
+    "questionId": "p_004",
+    "type": "mcq",
+    "text": "You encounter a bug you don’t understand. What do you do first?",
+    "options": [
+      "Add logs and debug step by step",
+      "Search online for similar issues",
+      "Rewrite the code from scratch",
+      "Ask someone immediately"
+    ],
+    "scoring": {
+      "Add logs and debug step by step": {"analytical": 2, "ownership": 1},
+      "Search online for similar issues": {"analytical": 1},
+      "Rewrite the code from scratch": {"execution_bias": 1},
+      "Ask someone immediately": {"collaboration": 2}
+    },
+    "order": 4
+  },
+  {
+    "questionId": "p_005",
+    "type": "forced_choice",
+    "text": "Which do you prefer?",
+    "options": [
+      "Designing how a full system works",
+      "Fixing bugs and improving small parts"
+    ],
+    "traitMapped": ["systems_thinking", "attention_to_detail"],
+    "order": 5
+  },
+  {
+    "questionId": "p_006",
+    "type": "mcq",
+    "text": "You are given vague project requirements. What do you do?",
+    "options": [
+      "Start building and iterate",
+      "Clarify everything before starting",
+      "Break into assumptions and proceed",
+      "Wait for more details"
+    ],
+    "scoring": {
+      "Start building and iterate": {"execution_bias": 2, "ambiguity_tolerance": 1},
+      "Clarify everything before starting": {"structure": 2},
+      "Break into assumptions and proceed": {"analytical": 2, "ambiguity_tolerance": 1},
+      "Wait for more details": {"low_ownership": 1}
+    },
+    "order": 6
+  },
+  {
+    "questionId": "p_007",
+    "type": "forced_choice",
+    "text": "What matters more to you?",
+    "options": [
+      "Highly optimized solution",
+      "Quick working solution"
+    ],
+    "traitMapped": ["optimization", "execution_bias"],
+    "order": 7
+  },
+  {
+    "questionId": "p_008",
+    "type": "mcq",
+    "text": "In a team project, when things go off track, you:",
+    "options": [
+      "Take charge and organize tasks",
+      "Focus on your part",
+      "Help teammates who are stuck",
+      "Wait for direction"
+    ],
+    "scoring": {
+      "Take charge and organize tasks": {"leadership": 2, "ownership": 1},
+      "Focus on your part": {"attention_to_detail": 1},
+      "Help teammates who are stuck": {"collaboration": 2},
+      "Wait for direction": {"low_ownership": 1}
+    },
+    "order": 8
+  },
+  {
+    "questionId": "p_009",
+    "type": "likert",
+    "text": "If something breaks in a project I worked on, I feel responsible to fix it.",
+    "traitMapped": ["ownership"],
+    "reversed": false,
+    "order": 9
+  },
+  {
+    "questionId": "p_010",
+    "type": "forced_choice",
+    "text": "Which sounds more appealing?",
+    "options": [
+      "Building something new from scratch",
+      "Improving an existing system"
+    ],
+    "traitMapped": ["creativity", "attention_to_detail"],
+    "order": 10
+  },
+  {
+    "questionId": "p_011",
+    "type": "mcq",
+    "text": "When making technical decisions, you rely more on:",
+    "options": [
+      "Data and benchmarks",
+      "Past experience",
+      "Team consensus",
+      "Gut feeling"
+    ],
+    "scoring": {
+      "Data and benchmarks": {"analytical": 2},
+      "Past experience": {"practicality": 1},
+      "Team consensus": {"collaboration": 2},
+      "Gut feeling": {"intuition": 1}
+    },
+    "order": 11
+  },
+  {
+    "questionId": "p_012",
+    "type": "likert",
+    "text": "I am comfortable working on problems without clear solutions.",
+    "traitMapped": ["ambiguity_tolerance"],
+    "reversed": false,
+    "order": 12
+  },
+
+  {
+    "questionId": "p_013",
+    "type": "likert",
+    "text": "I double-check my work to avoid small mistakes.",
+    "traitMapped": ["attention_to_detail"],
+    "reversed": false,
+    "order": 13
+  },
+  {
+    "questionId": "p_014",
+    "type": "mcq",
+    "text": "You have two solutions: one simple and one complex but scalable. You choose:",
+    "options": [
+      "Simple solution",
+      "Scalable solution",
+      "Depends on deadline",
+      "Ask team"
+    ],
+    "scoring": {
+      "Simple solution": {"execution_bias": 2},
+      "Scalable solution": {"systems_thinking": 2},
+      "Depends on deadline": {"practicality": 1},
+      "Ask team": {"collaboration": 1}
+    },
+    "order": 14
+  },
+  {
+    "questionId": "p_015",
+    "type": "forced_choice",
+    "text": "Which do you enjoy more?",
+    "options": [
+      "Solving algorithmic problems",
+      "Building user-facing features"
+    ],
+    "traitMapped": ["analytical", "creativity"],
+    "order": 15
+  },
+  {
+    "questionId": "p_016",
+    "type": "likert",
+    "text": "I prefer understanding how things work internally rather than just using them.",
+    "traitMapped": ["systems_thinking"],
+    "reversed": false,
+    "order": 16
+  },
+  {
+    "questionId": "p_017",
+    "type": "mcq",
+    "text": "A teammate is struggling with a task. You:",
+    "options": [
+      "Help them understand the solution",
+      "Do it for them quickly",
+      "Inform the manager",
+      "Focus on your work"
+    ],
+    "scoring": {
+      "Help them understand the solution": {"leadership": 2, "collaboration": 1},
+      "Do it for them quickly": {"execution_bias": 1},
+      "Inform the manager": {"structure": 1},
+      "Focus on your work": {"low_collaboration": 1}
+    },
+    "order": 17
+  },
+  {
+    "questionId": "p_018",
+    "type": "likert",
+    "text": "I like experimenting with different approaches before finalizing a solution.",
+    "traitMapped": ["creativity"],
+    "reversed": false,
+    "order": 18
+  },
+  {
+    "questionId": "p_019",
+    "type": "forced_choice",
+    "text": "Which frustrates you more?",
+    "options": [
+      "Unoptimized slow systems",
+      "Unclear requirements"
+    ],
+    "traitMapped": ["optimization", "structure"],
+    "order": 19
+  },
+  {
+    "questionId": "p_020",
+    "type": "mcq",
+    "text": "When learning a new technology, you:",
+    "options": [
+      "Read documentation thoroughly",
+      "Start building immediately",
+      "Watch tutorials",
+      "Ask someone experienced"
+    ],
+    "scoring": {
+      "Read documentation thoroughly": {"analytical": 1},
+      "Start building immediately": {"execution_bias": 2},
+      "Watch tutorials": {"practicality": 1},
+      "Ask someone experienced": {"collaboration": 1}
+    },
+    "order": 20
+  },
+  {
+    "questionId": "p_021",
+    "type": "likert",
+    "text": "I take initiative even when tasks are not assigned to me.",
+    "traitMapped": ["ownership"],
+    "reversed": false,
+    "order": 21
+  },
+  {
+    "questionId": "p_022",
+    "type": "forced_choice",
+    "text": "Which would you rather do?",
+    "options": [
+      "Optimize an existing algorithm",
+      "Create a new product idea"
+    ],
+    "traitMapped": ["optimization", "creativity"],
+    "order": 22
+  },
+  {
+    "questionId": "p_023",
+    "type": "mcq",
+    "text": "Under tight deadlines, you:",
+    "options": [
+      "Focus on delivering quickly",
+      "Maintain quality even if slower",
+      "Negotiate scope",
+      "Ask for help"
+    ],
+    "scoring": {
+      "Focus on delivering quickly": {"execution_bias": 2},
+      "Maintain quality even if slower": {"attention_to_detail": 2},
+      "Negotiate scope": {"leadership": 1},
+      "Ask for help": {"collaboration": 1}
+    },
+    "order": 23
+  },
+  {
+    "questionId": "p_024",
+    "type": "likert",
+    "text": "I enjoy taking responsibility for team outcomes.",
+    "traitMapped": ["leadership"],
+    "reversed": false,
+    "order": 24
+  },
+  {
+    "questionId": "p_025",
+    "type": "forced_choice",
+    "text": "Which do you prefer?",
+    "options": [
+      "Working independently",
+      "Working in a team"
+    ],
+    "traitMapped": ["ownership", "collaboration"],
+    "order": 25
+  },
+  {
+    "questionId": "p_026",
+    "type": "mcq",
+    "text": "You find a better way to implement something. You:",
+    "options": [
+      "Refactor immediately",
+      "Suggest it to the team",
+      "Note it for later",
+      "Ignore it"
+    ],
+    "scoring": {
+      "Refactor immediately": {"ownership": 2},
+      "Suggest it to the team": {"collaboration": 2},
+      "Note it for later": {"practicality": 1},
+      "Ignore it": {"low_ownership": 1}
+    },
+    "order": 26
+  },
+  {
+    "questionId": "p_027",
+    "type": "likert",
+    "text": "I enjoy working on large, complex systems.",
+    "traitMapped": ["systems_thinking"],
+    "reversed": false,
+    "order": 27
+  },
+  {
+    "questionId": "p_028",
+    "type": "forced_choice",
+    "text": "Which motivates you more?",
+    "options": [
+      "Solving hard technical problems",
+      "Building something people use"
+    ],
+    "traitMapped": ["analytical", "creativity"],
+    "order": 28
+  },
+  {
+    "questionId": "p_029",
+    "type": "mcq",
+    "text": "When a project fails, you:",
+    "options": [
+      "Analyze what went wrong",
+      "Move on quickly",
+      "Discuss with team",
+      "Avoid similar tasks"
+    ],
+    "scoring": {
+      "Analyze what went wrong": {"analytical": 2, "ownership": 1},
+      "Move on quickly": {"execution_bias": 1},
+      "Discuss with team": {"collaboration": 2},
+      "Avoid similar tasks": {"low_resilience": 1}
+    },
+    "order": 29
+  },
+  {
+    "questionId": "p_030",
+    "type": "likert",
+    "text": "I prefer clarity and planning over spontaneous decisions.",
+    "traitMapped": ["structure"],
+    "reversed": false,
+    "order": 30
+  }
+]

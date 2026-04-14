@@ -1,0 +1,762 @@
+[
+  {
+    "questionId": "dsa_mcq_001",
+    "domain": "dsa",
+    "concept": "binary_search",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "What is the time complexity of binary search?",
+    "options": [
+      "O(n)",
+      "O(log n)",
+      "O(n log n)",
+      "O(1)"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_mcq_002",
+    "domain": "dsa",
+    "concept": "sorting",
+    "difficulty": 1,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which sorting algorithm is stable?",
+    "options": [
+      "Quick Sort",
+      "Merge Sort",
+      "Heap Sort",
+      "Selection Sort"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_mcq_001",
+    "domain": "web_dev",
+    "concept": "http",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Which HTTP method is idempotent?",
+    "options": [
+      "POST",
+      "GET",
+      "PATCH",
+      "CONNECT"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_mcq_002",
+    "domain": "web_dev",
+    "concept": "frontend",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "What improves frontend performance?",
+    "options": [
+      "Large images",
+      "Code splitting",
+      "Inline all scripts",
+      "No caching"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_mcq_001",
+    "domain": "ml",
+    "concept": "supervised_learning",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Which is a supervised learning algorithm?",
+    "options": [
+      "K-Means",
+      "PCA",
+      "Linear Regression",
+      "DBSCAN"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_mcq_002",
+    "domain": "ml",
+    "concept": "evaluation",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Best metric for imbalanced classification?",
+    "options": [
+      "Accuracy",
+      "F1 Score",
+      "MSE",
+      "R2"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_mcq_001",
+    "domain": "databases",
+    "concept": "normalization",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "What is the goal of normalization?",
+    "options": [
+      "Increase redundancy",
+      "Reduce redundancy",
+      "Speed up UI",
+      "Encrypt data"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_mcq_002",
+    "domain": "databases",
+    "concept": "indexing",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "What is the purpose of indexing?",
+    "options": [
+      "Reduce storage",
+      "Improve query speed",
+      "Backup data",
+      "Normalize schema"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_mcq_003",
+    "domain": "dsa",
+    "concept": "linked_list",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "What is the time complexity to insert an element at the beginning of a singly linked list?",
+    "options": [
+      "O(1)",
+      "O(n)",
+      "O(log n)",
+      "O(n^2)"
+    ],
+    "answer": 0,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_mcq_004",
+    "domain": "dsa",
+    "concept": "stacks",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Which data structure follows the Last-In-First-Out (LIFO) principle?",
+    "options": [
+      "Queue",
+      "Tree",
+      "Stack",
+      "Graph"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_mcq_005",
+    "domain": "dsa",
+    "concept": "hashing",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "What occurs when two different keys hash to the same index in a hash table?",
+    "options": [
+      "Overflow",
+      "Collision",
+      "Deletion",
+      "Recursion"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_mcq_006",
+    "domain": "dsa",
+    "concept": "graphs",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which algorithm is used to find the shortest path in a weighted graph with no negative edges?",
+    "options": [
+      "Prim's",
+      "Kruskal's",
+      "Dijkstra's",
+      "DFS"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_mcq_007",
+    "domain": "dsa",
+    "concept": "sorting",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "What is the worst-case time complexity of Quick Sort?",
+    "options": [
+      "O(n log n)",
+      "O(n)",
+      "O(n^2)",
+      "O(log n)"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_mcq_003",
+    "domain": "web_dev",
+    "concept": "css",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Which CSS property is used to change the text color of an element?",
+    "options": [
+      "font-color",
+      "text-style",
+      "color",
+      "background-color"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_mcq_004",
+    "domain": "web_dev",
+    "concept": "javascript",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which keyword is used to declare a block-scoped variable in ES6?",
+    "options": [
+      "var",
+      "let",
+      "global",
+      "set"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_mcq_005",
+    "domain": "web_dev",
+    "concept": "security",
+    "difficulty": 3,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which header helps prevent Cross-Site Scripting (XSS) attacks?",
+    "options": [
+      "Content-Type",
+      "Content-Security-Policy",
+      "Access-Control-Allow-Origin",
+      "Cache-Control"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_mcq_006",
+    "domain": "web_dev",
+    "concept": "react",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "What is the primary purpose of 'props' in React?",
+    "options": [
+      "To store local state",
+      "To pass data to child components",
+      "To handle side effects",
+      "To manage global routing"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_mcq_007",
+    "domain": "web_dev",
+    "concept": "http",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "What does a 403 HTTP status code indicate?",
+    "options": [
+      "Not Found",
+      "Internal Server Error",
+      "Forbidden",
+      "Bad Request"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_mcq_003",
+    "domain": "ml",
+    "concept": "neural_networks",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Which activation function is commonly used in the hidden layers of a Deep Neural Network to avoid vanishing gradients?",
+    "options": [
+      "Sigmoid",
+      "Tanh",
+      "ReLU",
+      "Softmax"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_mcq_004",
+    "domain": "ml",
+    "concept": "overfitting",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which technique is used to prevent overfitting by penalizing large weights?",
+    "options": [
+      "Regularization",
+      "Data Augmentation",
+      "One-hot encoding",
+      "Min-max scaling"
+    ],
+    "answer": 0,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_mcq_005",
+    "domain": "ml",
+    "concept": "unsupervised_learning",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "In K-Means clustering, what does the 'K' represent?",
+    "options": [
+      "Number of iterations",
+      "Number of features",
+      "Number of clusters",
+      "Learning rate"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_mcq_006",
+    "domain": "ml",
+    "concept": "deep_learning",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Which architecture is most suitable for image recognition tasks?",
+    "options": [
+      "RNN",
+      "CNN",
+      "LSTM",
+      "Linear Regression"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "ml_mcq_007",
+    "domain": "ml",
+    "concept": "bias_variance",
+    "difficulty": 3,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "A model that performs well on training data but poorly on test data is likely suffering from:",
+    "options": [
+      "High Bias",
+      "High Variance",
+      "Underfitting",
+      "Low Complexity"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_mcq_003",
+    "domain": "databases",
+    "concept": "acid",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "In ACID properties, what does 'Atomicity' guarantee?",
+    "options": [
+      "Data is isolated",
+      "Transactions are all or nothing",
+      "Data is consistent",
+      "Transactions are durable"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_mcq_004",
+    "domain": "databases",
+    "concept": "sql",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Which SQL clause is used to filter records?",
+    "options": [
+      "ORDER BY",
+      "GROUP BY",
+      "WHERE",
+      "SELECT"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_mcq_005",
+    "domain": "databases",
+    "concept": "joins",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which join returns only the rows that have matching values in both tables?",
+    "options": [
+      "LEFT JOIN",
+      "RIGHT JOIN",
+      "INNER JOIN",
+      "FULL JOIN"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_mcq_006",
+    "domain": "databases",
+    "concept": "nosql",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which database is categorized as a Document-oriented NoSQL database?",
+    "options": [
+      "MySQL",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_mcq_007",
+    "domain": "databases",
+    "concept": "keys",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "A column that uniquely identifies each record in a table is called a:",
+    "options": [
+      "Foreign Key",
+      "Secondary Key",
+      "Primary Key",
+      "Composite Key"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_mcq_001",
+    "domain": "operating_systems",
+    "concept": "processes",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "What is a deadlock in an operating system?",
+    "options": [
+      "A process is terminated",
+      "Two processes waiting for each other",
+      "A process is running too fast",
+      "A system crash"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_mcq_002",
+    "domain": "operating_systems",
+    "concept": "scheduling",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which scheduling algorithm can lead to starvation?",
+    "options": [
+      "Round Robin",
+      "First-Come First-Served",
+      "Priority Scheduling",
+      "Multilevel Queue"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_mcq_003",
+    "domain": "operating_systems",
+    "concept": "memory_management",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "What is 'paging' used for in an OS?",
+    "options": [
+      "File storage",
+      "Virtual memory management",
+      "Process synchronization",
+      "Network routing"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_mcq_004",
+    "domain": "operating_systems",
+    "concept": "threads",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "What do threads of the same process share?",
+    "options": [
+      "Stack",
+      "Registers",
+      "Address space",
+      "Program counter"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_mcq_005",
+    "domain": "operating_systems",
+    "concept": "caching",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which replacement policy removes the page that has not been used for the longest period?",
+    "options": [
+      "FIFO",
+      "LRU",
+      "LIFO",
+      "Optimal"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_mcq_001",
+    "domain": "networking",
+    "concept": "osi_model",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "On which OSI layer does an IP address operate?",
+    "options": [
+      "Data Link",
+      "Network",
+      "Transport",
+      "Session"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_mcq_002",
+    "domain": "networking",
+    "concept": "protocols",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Which protocol is connection-oriented and ensures reliable data delivery?",
+    "options": [
+      "UDP",
+      "TCP",
+      "ICMP",
+      "DNS"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_mcq_003",
+    "domain": "networking",
+    "concept": "dns",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "What is the primary function of DNS?",
+    "options": [
+      "File transfer",
+      "IP to MAC mapping",
+      "Domain name to IP mapping",
+      "Secure shell access"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_mcq_004",
+    "domain": "networking",
+    "concept": "security",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "What does SSL/TLS provide for network communication?",
+    "options": [
+      "Faster speeds",
+      "Encryption and Authentication",
+      "Routing",
+      "Compression"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_mcq_005",
+    "domain": "networking",
+    "concept": "subnets",
+    "difficulty": 3,
+    "bloom": 3,
+    "type": "mcq",
+    "text": "How many usable hosts are available in a /24 subnet?",
+    "options": [
+      "256",
+      "254",
+      "512",
+      "128"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  }
+]
