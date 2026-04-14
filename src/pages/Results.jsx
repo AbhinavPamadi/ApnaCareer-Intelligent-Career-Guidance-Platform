@@ -55,6 +55,7 @@ export default function Results() {
         assessmentStatus: 'not_started',
         personalityComplete: false,
         quizComplete: false,
+        stage3Complete: false,
         currentPhase: 1,
         questionsAnsweredCount: 0,
       });
@@ -63,12 +64,15 @@ export default function Results() {
       batch.delete(doc(db, 'quiz_sessions', user.uid));
       batch.delete(doc(db, 'bkt_beliefs', user.uid));
       batch.delete(doc(db, 'results', user.uid));
+      batch.delete(doc(db, 'stage3_sessions', user.uid));
 
       await batch.commit();
 
       const answersSnap = await getDocs(collection(db, 'quiz_responses', user.uid, 'answers'));
+      const stage3AnswersSnap = await getDocs(collection(db, 'stage3_responses', user.uid, 'answers'));
       const delBatch = writeBatch(db);
       answersSnap.docs.forEach(d => delBatch.delete(d.ref));
+      stage3AnswersSnap.docs.forEach(d => delBatch.delete(d.ref));
       if (!delBatch._mutations || delBatch._mutations.length > 0) {
         await delBatch.commit();
       }
@@ -176,6 +180,49 @@ export default function Results() {
               We highly encourage pausing to strengthen your foundational programming paradigms. 
               Review the fundamentals of <strong>{results.bestDomain}</strong>, concentrating on syntax logic and base algorithms.
             </p>
+          </div>
+        )}
+
+        {(results.answerQualityComparison || results.stage3) && (
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <h3 className="text-xl font-bold mb-4">Stage 2 vs Stage 3 Validation</h3>
+            {results.stage3?.skipped && (
+              <div className="mb-4 bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
+                Stage 3 was skipped. Final recommendations are based on Stage 2 and personality data.
+              </div>
+            )}
+            {results.answerQualityComparison && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                  <p className="text-xs uppercase tracking-wide text-gray-500 font-bold">Stage 2 Avg</p>
+                  <p className="text-2xl font-extrabold text-gray-800">
+                    {Math.round((results.answerQualityComparison.stage2Average || 0) * 100)}%
+                  </p>
+                </div>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                  <p className="text-xs uppercase tracking-wide text-gray-500 font-bold">Stage 3 Avg</p>
+                  <p className="text-2xl font-extrabold text-gray-800">
+                    {results.answerQualityComparison.stage3Average === null
+                      ? 'Skipped'
+                      : `${Math.round((results.answerQualityComparison.stage3Average || 0) * 100)}%`}
+                  </p>
+                </div>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                  <p className="text-xs uppercase tracking-wide text-gray-500 font-bold">Delta</p>
+                  <p className={`text-2xl font-extrabold ${results.answerQualityComparison.delta === null ? 'text-gray-600' : (results.answerQualityComparison.delta || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {results.answerQualityComparison.delta === null
+                      ? 'N/A'
+                      : `${(results.answerQualityComparison.delta || 0) >= 0 ? '+' : ''}${Math.round((results.answerQualityComparison.delta || 0) * 100)}%`}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {results.stage3?.githubUsername && (
+              <p className="text-sm text-gray-600">
+                GitHub-verified insights were generated using repositories from <span className="font-semibold">@{results.stage3.githubUsername}</span>.
+              </p>
+            )}
           </div>
         )}
 

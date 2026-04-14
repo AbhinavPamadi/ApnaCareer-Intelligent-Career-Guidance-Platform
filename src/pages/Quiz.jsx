@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { doc, getDoc, setDoc, updateDoc, collection, getDocs, arrayUnion } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { questionBank } from '../data/questionBank';
 import { updateBelief } from '../engine/bkt';
 import { scoreSubjective, scoreStructured } from '../engine/rubric';
 import { selectNextQuestion, isPhaseComplete } from '../engine/questionSelector';
-import { generateResults } from '../engine/resultGenerator';
 import { useToast } from '../components/ToastContext';
 
 export default function Quiz() {
@@ -101,14 +100,23 @@ export default function Quiz() {
     const uid = auth.currentUser.uid;
 
     if (currentSession.phase >= 3) {
-      // Generate and save results
-      setSubmitting(true);
-      const answersSnap = await getDocs(collection(db, 'quiz_responses', uid, 'answers'));
-      const answeredQuestions = answersSnap.docs.map(d => d.data());
-      const results = generateResults({ bktBeliefs: currentBkt, personalityData: currentPersData, session: currentSession, questionBank, answeredQuestions });
-      await setDoc(doc(db, 'results', uid), { ...results, generatedAt: new Date().toISOString() });
-      await updateDoc(doc(db, 'users', uid), { assessmentStatus: 'complete', quizComplete: true });
-      navigate('/results');
+      // Stage 2 complete, transition to Stage 3 (GitHub + LLM deep validation)
+      await updateDoc(doc(db, 'users', uid), {
+        assessmentStatus: 'in_progress',
+        quizComplete: true,
+        stage3Complete: false,
+        currentPhase: 4,
+      });
+      await setDoc(
+        doc(db, 'stage3_sessions', uid),
+        {
+          uid,
+          stage2CompletedAt: new Date().toISOString(),
+          domainBeliefsBeforeStage3: currentBkt?.domainBeliefs || {},
+        },
+        { merge: true }
+      );
+      navigate('/quiz/stage3');
       return;
     }
 
@@ -154,9 +162,17 @@ export default function Quiz() {
           conceptsMissed: isCorrect ? [] : [currentQuestion.concept],
         };
       } else if (currentQuestion.type === 'short') {
-        evaluation = scoreSubjective(userAnswer, currentQuestion.expectedPoints || []);
+        evaluation = await scoreSubjective(
+          userAnswer,
+          currentQuestion.expectedPoints || [],
+          currentQuestion.text || ''
+        );
       } else {
-        evaluation = scoreStructured(userAnswer, currentQuestion.expectedPoints || []);
+        evaluation = await scoreStructured(
+          userAnswer,
+          currentQuestion.expectedPoints || [],
+          currentQuestion.text || ''
+        );
       }
 
       // 2. BKT update

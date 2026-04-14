@@ -63,6 +63,7 @@ export default function Dashboard() {
         assessmentStatus: 'in_progress',
         personalityComplete: false,
         quizComplete: false,
+        stage3Complete: false,
         currentPhase: 1,
       });
       setUserData((prev) => ({
@@ -70,6 +71,7 @@ export default function Dashboard() {
         assessmentStatus: 'in_progress',
         personalityComplete: false,
         quizComplete: false,
+        stage3Complete: false,
         currentPhase: 1,
       }));
     } catch (err) {
@@ -93,6 +95,7 @@ export default function Dashboard() {
         assessmentStatus: 'not_started',
         personalityComplete: false,
         quizComplete: false,
+        stage3Complete: false,
         currentPhase: 1,
         questionsAnsweredCount: 0,
       });
@@ -101,12 +104,15 @@ export default function Dashboard() {
       batch.delete(doc(db, 'quiz_sessions', user.uid));
       batch.delete(doc(db, 'bkt_beliefs', user.uid));
       batch.delete(doc(db, 'results', user.uid));
+      batch.delete(doc(db, 'stage3_sessions', user.uid));
 
       await batch.commit();
 
       const answersSnap = await getDocs(collection(db, 'quiz_responses', user.uid, 'answers'));
+      const stage3AnswersSnap = await getDocs(collection(db, 'stage3_responses', user.uid, 'answers'));
       const delBatch = writeBatch(db);
       answersSnap.docs.forEach(d => delBatch.delete(d.ref));
+      stage3AnswersSnap.docs.forEach(d => delBatch.delete(d.ref));
       if (!delBatch._mutations || delBatch._mutations.length > 0) {
         await delBatch.commit();
       }
@@ -116,6 +122,7 @@ export default function Dashboard() {
         assessmentStatus: 'not_started',
         personalityComplete: false,
         quizComplete: false,
+        stage3Complete: false,
         currentPhase: 1,
       }));
       setResultsData(null);
@@ -139,7 +146,7 @@ export default function Dashboard() {
     return <div className="min-h-screen flex items-center justify-center">User not found</div>;
   }
 
-  const { assessmentStatus, name, currentPhase, personalityComplete, quizComplete } = userData;
+  const { assessmentStatus, currentPhase, personalityComplete, quizComplete, stage3Complete } = userData;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-50 flex flex-col">
@@ -177,7 +184,12 @@ export default function Dashboard() {
 
             <div className="pt-4">
               <button
-                onClick={() => navigate(personalityComplete && !quizComplete ? '/quiz' : '/personality')}
+                onClick={() => {
+                  if (!personalityComplete) navigate('/personality');
+                  else if (!quizComplete) navigate('/quiz');
+                  else if (!stage3Complete) navigate('/quiz/stage3');
+                  else navigate('/results');
+                }}
                 className="bg-blue-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow hover:bg-blue-700 transition"
               >
                 Resume Assessment

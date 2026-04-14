@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Personality from './pages/Personality';
 import QuizIntro from './pages/QuizIntro';
 import Quiz from './pages/Quiz';
+import Stage3Quiz from './pages/Stage3Quiz';
 import Results from './pages/Results';
 import Timeline from './pages/Timeline';
 
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/personality" element={<ProtectedRoute><Personality /></ProtectedRoute>} />
           <Route path="/quiz/intro" element={<ProtectedRoute><QuizIntro /></ProtectedRoute>} />
           <Route path="/quiz" element={<ProtectedRoute><Quiz /></ProtectedRoute>} />
+          <Route path="/quiz/stage3" element={<ProtectedRoute><Stage3Quiz /></ProtectedRoute>} />
           <Route path="/results" element={<ProtectedRoute><Results /></ProtectedRoute>} />
           <Route path="/timeline" element={<ProtectedRoute><Timeline /></ProtectedRoute>} />
           
