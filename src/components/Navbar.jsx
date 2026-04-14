@@ -83,6 +83,16 @@ export default function Navbar() {
             >
               Forum
             </NavLink>
+            <NavLink
+              to="/feedback"
+              className={({ isActive }) =>
+                `px-3 py-1.5 rounded-full text-sm font-semibold transition ${
+                  isActive ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                }`
+              }
+            >
+              Feedback
+            </NavLink>
           </div>
           <div className="flex items-center space-x-4">
             <span className="text-gray-700 font-medium hidden sm:inline-block">Hello, {name || 'Student'}</span>

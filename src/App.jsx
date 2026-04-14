@@ -12,6 +12,7 @@ import Stage3Quiz from './pages/Stage3Quiz';
 import Results from './pages/Results';
 import Timeline from './pages/Timeline';
 import Forum from './pages/Forum';
+import Feedback from './pages/Feedback';
 import ForumQnA from './pages/forum/ForumQnA';
 import ForumMentorMatching from './pages/forum/ForumMentorMatching';
 import ForumStudyBuddy from './pages/forum/ForumStudyBuddy';
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/results" element={<ProtectedRoute><Results /></ProtectedRoute>} />
           <Route path="/timeline" element={<ProtectedRoute><Timeline /></ProtectedRoute>} />
           <Route path="/forum" element={<ProtectedRoute><Forum /></ProtectedRoute>} />
+          <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
           <Route path="/forum/q-and-a" element={<ProtectedRoute><ForumQnA /></ProtectedRoute>} />
           <Route path="/forum/peer-mentor-matching" element={<ProtectedRoute><ForumMentorMatching /></ProtectedRoute>} />
           <Route path="/forum/study-buddy-finder" element={<ProtectedRoute><ForumStudyBuddy /></ProtectedRoute>} />
