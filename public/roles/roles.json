@@ -1,0 +1,147 @@
+{
+  "frontend_engineer": {
+    "phases": [
+      {
+        "title": "The Big Three",
+        "duration": "3-4 weeks",
+        "skills": ["Semantic HTML", "Advanced CSS", "Modern JavaScript (ES6+)"]
+      },
+      {
+        "title": "Framework Mastery",
+        "duration": "5-7 weeks",
+        "skills": ["React/Vue/Angular", "State Management (Redux/Zustand)", "Hooks/Lifecycle"]
+      },
+      {
+        "title": "Build & Style",
+        "duration": "3 weeks",
+        "skills": ["Tailwind CSS", "Build Tools (Vite/Webpack)", "Package Managers"]
+      },
+      {
+        "title": "Performance & Testing",
+        "duration": "3-4 weeks",
+        "skills": ["Lighthouse Optimization", "Unit Testing (Jest)", "Responsive Design"]
+      },
+      {
+        "title": "Portfolio & Depth",
+        "duration": "4 weeks",
+        "skills": ["Next.js (SSR/SSG)", "API Integration", "Web Accessibility (A11y)"]
+      }
+    ]
+  },
+  "devops_engineer": {
+    "phases": [
+      {
+        "title": "Linux & Networking",
+        "duration": "3-4 weeks",
+        "skills": ["Bash Scripting", "SSH", "TCP/IP & DNS"]
+      },
+      {
+        "title": "Containerization",
+        "duration": "4 weeks",
+        "skills": ["Docker", "Container Orchestration (Kubernetes Basics)", "Helm"]
+      },
+      {
+        "title": "CI/CD Pipelines",
+        "duration": "4-5 weeks",
+        "skills": ["GitHub Actions/Jenkins", "Automated Testing", "Artifact Management"]
+      },
+      {
+        "title": "Infrastructure as Code",
+        "duration": "4 weeks",
+        "skills": ["Terraform", "Ansible", "Cloud Providers (AWS/Azure/GCP)"]
+      },
+      {
+        "title": "Observability",
+        "duration": "3 weeks",
+        "skills": ["Prometheus & Grafana", "Logging (ELK Stack)", "Incident Response"]
+      }
+    ]
+  },
+  "data_engineer": {
+    "phases": [
+      {
+        "title": "Programming for Data",
+        "duration": "3-4 weeks",
+        "skills": ["Advanced Python", "Pandas & NumPy", "SQL Mastery"]
+      },
+      {
+        "title": "Storage & Modeling",
+        "duration": "4 weeks",
+        "skills": ["Data Warehousing (Snowflake/BigQuery)", "NoSQL", "Data Modeling"]
+      },
+      {
+        "title": "ETL/ELT Pipelines",
+        "duration": "5-6 weeks",
+        "skills": ["Apache Airflow", "dbt (Data Build Tool)", "API Data Extraction"]
+      },
+      {
+        "title": "Big Data Processing",
+        "duration": "4-5 weeks",
+        "skills": ["Apache Spark", "Kafka (Streaming)", "Hadoop Ecosystem"]
+      },
+      {
+        "title": "Cloud Data Ops",
+        "duration": "3 weeks",
+        "skills": ["AWS Glue", "Data Governance", "Security & Encryption"]
+      }
+    ]
+  },
+  "mobile_engineer_cross_platform": {
+    "phases": [
+      {
+        "title": "Language Core",
+        "duration": "3-4 weeks",
+        "skills": ["Dart (Flutter) or TypeScript (React Native)"]
+      },
+      {
+        "title": "UI & Navigation",
+        "duration": "4 weeks",
+        "skills": ["Widget/Component Trees", "Routing", "Native UI Guidelines"]
+      },
+      {
+        "title": "Device Integration",
+        "duration": "4 weeks",
+        "skills": ["Local Storage (SQLite)", "Camera/GPS APIs", "Push Notifications"]
+      },
+      {
+        "title": "State & Performance",
+        "duration": "4-5 weeks",
+        "skills": ["State Management (Bloc/Riverpod)", "Memory Management", "Animations"]
+      },
+      {
+        "title": "App Store Readiness",
+        "duration": "3 weeks",
+        "skills": ["App Store/Play Store Guidelines", "CI/CD for Mobile", "Code Signing"]
+      }
+    ]
+  },
+  "security_engineer": {
+    "phases": [
+      {
+        "title": "Networking & OS",
+        "duration": "4 weeks",
+        "skills": ["Network Protocols", "Linux Internal Security", "Cryptography"]
+      },
+      {
+        "title": "Application Security",
+        "duration": "5-6 weeks",
+        "skills": ["OWASP Top 10", "Penetration Testing", "Security Headers"]
+      },
+      {
+        "title": "Identity & Access",
+        "duration": "3-4 weeks",
+        "skills": ["OAuth2/OIDC", "IAM Policy Design", "Zero Trust Architecture"]
+      },
+      {
+        "title": "Defensive Security",
+        "duration": "4 weeks",
+        "skills": ["SIEM Tools", "Firewall Configuration", "Threat Modeling"]
+      },
+      {
+        "title": "Audit & Compliance",
+        "duration": "3 weeks",
+        "skills": ["SOC2/GDPR Compliance", "Vulnerability Scanning", "Incident Forensics"]
+      }
+    ]
+  }
+}

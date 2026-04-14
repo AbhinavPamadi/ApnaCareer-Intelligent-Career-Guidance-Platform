@@ -139,6 +139,9 @@ export default function Results() {
         <div className="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
           <h1 className="text-3xl font-extrabold text-gray-900">Your Engineering Profile</h1>
           <div className="flex space-x-3">
+            <button onClick={() => navigate('/timeline')} className="text-blue-700 bg-blue-100 hover:bg-blue-200 font-bold py-2 px-4 rounded shadow-sm transition">
+              Explore Role Timelines
+            </button>
             <button onClick={handleDownload} className="text-gray-600 bg-gray-100 hover:bg-gray-200 font-bold py-2 px-4 rounded shadow-sm transition">
               Download Report
             </button>

@@ -142,13 +142,13 @@ export default function Dashboard() {
   const { assessmentStatus, name, currentPhase, personalityComplete, quizComplete } = userData;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-50 flex flex-col">
       <Navbar />
 
       <main className="flex-1 max-w-4xl mx-auto w-full p-6">
         {assessmentStatus === 'not_started' && (
-          <div className="bg-white rounded-xl shadow p-8 text-center space-y-6 border border-gray-100 mt-10">
-            <h2 className="text-3xl font-bold text-gray-900">Welcome to CareerCompass!</h2>
+          <div className="bg-white rounded-2xl shadow p-8 text-center space-y-6 border border-blue-100 mt-10">
+            <h2 className="text-3xl font-bold text-gray-900">Welcome to Apna Career!</h2>
             <p className="text-gray-600 max-w-xl mx-auto">
               Your journey begins here. You will first take a brief personality quiz to help us understand your traits, followed by an adaptive technical assessment aligned with the Washington Accord.
             </p>

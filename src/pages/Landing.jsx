@@ -2,13 +2,16 @@ import { Link } from 'react-router-dom';
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6 text-gray-800">
-      <div className="max-w-4xl text-center space-y-8">
-        <h1 className="text-5xl font-extrabold text-blue-600 tracking-tight">
-          CareerCompass
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex flex-col items-center justify-center p-6 text-gray-800">
+      <div className="max-w-5xl text-center space-y-8">
+        <span className="inline-block bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wide">
+          AI-guided assessment platform
+        </span>
+        <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+          Apna Career
         </h1>
-        <p className="text-xl md:text-2xl text-gray-600 font-medium">
-          Find your engineering path
+        <p className="text-xl md:text-2xl text-gray-600 font-medium max-w-3xl mx-auto">
+          Discover your best-fit engineering path with adaptive quizzes, deep skill mapping, and role timelines.
         </p>
 
         <div className="grid md:grid-cols-3 gap-8 mt-12 mb-12">
@@ -31,7 +34,7 @@ export default function Landing() {
 
         <Link
           to="/auth"
-          className="inline-block bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-blue-700 transition"
+          className="inline-block bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition"
         >
           Get Started
         </Link>
