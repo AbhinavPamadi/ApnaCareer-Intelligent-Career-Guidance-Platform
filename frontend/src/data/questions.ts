@@ -1,4 +1,4 @@
-import { Question } from '../types';
+import type { Question } from '../types';
 
 export const mockQuestions: Question[] = [
     // L1-L2 (Screening Phase)

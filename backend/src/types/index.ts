@@ -54,9 +54,9 @@ export interface PersonalityTraits {
     structured: number;
 }
 
-export interface DomainPriors {
-    [domain in Domain]?: number;
-}
+export type DomainPriors = {
+    [K in Domain]?: number;
+};
 
 export interface UserProfile {
     userId: string;
