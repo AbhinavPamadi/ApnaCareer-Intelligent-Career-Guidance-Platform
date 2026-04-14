@@ -1,0 +1,44 @@
+[
+  {
+    "questionId": "q_dsa_001",
+    "domain": "DSA",
+    "concept": "BinarySearch",
+    "bloomLevel": "Remember",
+    "difficulty": "Easy",
+    "waAttributes": ["PO1"],
+    "skillAttribute": "Problem Solving",
+    "type": "MCQ",
+    "text": "What is the time complexity of binary search?",
+    "options": ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
+    "correctIndex": 1,
+    "rubric": null
+  },
+  {
+    "questionId": "q_dsa_002",
+    "domain": "DSA",
+    "concept": "Sorting",
+    "bloomLevel": "Understand",
+    "difficulty": "Medium",
+    "waAttributes": ["PO2"],
+    "skillAttribute": "Algorithm Design",
+    "type": "MCQ",
+    "text": "Which sorting algorithm has the best average case time complexity?",
+    "options": ["Insertion Sort", "Bubble Sort", "Merge Sort", "Selection Sort"],
+    "correctIndex": 2,
+    "rubric": null
+  },
+  {
+    "questionId": "q_dsa_003",
+    "domain": "DSA",
+    "concept": "Trees",
+    "bloomLevel": "Apply",
+    "difficulty": "Hard",
+    "waAttributes": ["PO3"],
+    "skillAttribute": "Data Structures",
+    "type": "MCQ",
+    "text": "What is the maximum number of nodes at level 'l' of a binary tree?",
+    "options": ["2^l", "2^(l-1)", "2^(l+1)", "2^l - 1"],
+    "correctIndex": 0,
+    "rubric": null
+  }
+]

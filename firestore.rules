@@ -1,9 +1,26 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /personality_responses/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /quiz_sessions/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /quiz_responses/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /quiz_responses/{uid}/answers/{answerId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /bkt_beliefs/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /results/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
     }
   }
 }

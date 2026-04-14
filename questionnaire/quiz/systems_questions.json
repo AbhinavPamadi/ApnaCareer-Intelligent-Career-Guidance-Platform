@@ -1,0 +1,44 @@
+[
+  {
+    "questionId": "q_systems_001",
+    "domain": "Systems",
+    "concept": "Networking",
+    "bloomLevel": "Remember",
+    "difficulty": "Easy",
+    "waAttributes": ["PO1"],
+    "skillAttribute": "Network Infrastructure",
+    "type": "MCQ",
+    "text": "Which layer of the OSI model does IP (Internet Protocol) operate on?",
+    "options": ["Network Layer", "Transport Layer", "Data Link Layer", "Physical Layer"],
+    "correctIndex": 0,
+    "rubric": null
+  },
+  {
+    "questionId": "q_systems_002",
+    "domain": "Systems",
+    "concept": "OS",
+    "bloomLevel": "Understand",
+    "difficulty": "Medium",
+    "waAttributes": ["PO2"],
+    "skillAttribute": "Systems Resource Management",
+    "type": "MCQ",
+    "text": "What is a major advantage of using virtual memory?",
+    "options": ["Faster CPU execution", "Higher network speed", "Allowing processes larger than physical RAM", "Less storage space needed"],
+    "correctIndex": 2,
+    "rubric": null
+  },
+  {
+    "questionId": "q_systems_003",
+    "domain": "Systems",
+    "concept": "Architecture",
+    "bloomLevel": "Apply",
+    "difficulty": "Hard",
+    "waAttributes": ["PO3"],
+    "skillAttribute": "System Design",
+    "type": "MCQ",
+    "text": "Which cache mapping technique allows a main memory block to be mapped to any cache line?",
+    "options": ["Direct mapping", "Fully associative mapping", "Set associative mapping", "Instruction mapping"],
+    "correctIndex": 1,
+    "rubric": null
+  }
+]

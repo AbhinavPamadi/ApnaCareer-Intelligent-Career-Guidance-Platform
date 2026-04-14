@@ -5,8 +5,10 @@
 
 ## Database: Firebase Firestore
 
-All data lives in Firestore (NoSQL, document-based).
-Questions are loaded from local JSON files into Firestore once during setup.
+**Only user-generated data lives in Firestore.**
+Questions are NOT stored in Firestore. They are bundled as local JSON files inside the React app
+and imported as static ES modules. The `questions` and `personality_questions` Firestore collections
+do not exist in this system.
 
 ---
 
@@ -72,6 +74,9 @@ One document per user storing all personality answers.
 }
 ```
 
+**Note:** Only responses and the computed vector are stored here. The question text and rubric
+live in the local JSON file. The app matches responses to questions by `questionId` at runtime.
+
 ---
 
 ### Collection: `quiz_sessions`
@@ -84,7 +89,7 @@ One document per user tracking their adaptive quiz state.
 {
   "uid": "abc123xyz",
   "phase": 3,
-  "activedomains": ["DSA", "ML", "Systems"],
+  "activeDomains": ["DSA", "ML", "Systems"],
   "eliminatedDomains": ["WebDev"],
   "bestDomain": null,
   "questionsAnswered": [
@@ -138,6 +143,10 @@ Each answer is one document:
 
 For subjective answers, `answerText` contains the response string.
 For L6 structured answers, `answerStructured` contains the 4-field object.
+
+**Note:** The question text is not stored here — only the answer and evaluation metadata.
+The full question (including text, options, rubric) lives in the local JSON file and is
+matched by `questionId` when displaying results or reviewing answers.
 
 ---
 
@@ -243,11 +252,32 @@ One document per user. Written once when quiz is complete.
 
 ---
 
-### Collection: `questions`
+## Collections That Do NOT Exist
 
-Loaded from JSON files during setup. One document per question.
+The following collections are explicitly NOT used in this system:
 
-**Document ID:** `questionId` (e.g., `q_dsa_042`)
+| Collection | Reason |
+|---|---|
+| `questions` | Questions are local JSON files, not stored in Firestore |
+| `personality_questions` | Personality questions are local JSON files, not stored in Firestore |
+
+Do not create these collections. Do not write any Firestore rules for them.
+
+---
+
+## Question JSON File Structure (local files — source of truth for questions)
+
+```
+/questionnaire/
+  personality_questions.json        ← imported by src/data/personalityQuestions.js
+  /quiz/
+    dsa_questions.json              ← imported by src/data/questionBank.js
+    webdev_questions.json           ← imported by src/data/questionBank.js
+    ml_questions.json               ← imported by src/data/questionBank.js
+    systems_questions.json          ← imported by src/data/questionBank.js
+```
+
+Each quiz question object shape:
 
 ```json
 {
@@ -305,13 +335,7 @@ For L6 structured questions:
 }
 ```
 
----
-
-### Collection: `personality_questions`
-
-Loaded from JSON file during setup.
-
-**Document ID:** `questionId` (e.g., `p_001`)
+Each personality question object shape:
 
 ```json
 {
@@ -319,33 +343,44 @@ Loaded from JSON file during setup.
   "text": "I enjoy breaking down complex problems into smaller parts and solving them systematically.",
   "type": "likert",
   "traitMapped": "analytical",
+  "reversed": false,
   "order": 1
 }
 ```
 
 ---
 
-## Firestore Security Rules (summary)
-
-- Users can only read/write their own documents (matched by UID)
-- `questions` and `personality_questions` collections are read-only for all authenticated users
-- No public read access to any collection
-- Only Firebase Cloud Functions (backend) can write to `results` and `bkt_beliefs`
-
----
-
-## Question JSON File Structure (local files → loaded into Firestore)
+## Firestore Security Rules
 
 ```
-/questionnaire/
-  personality_questions.json
-  /quiz/
-    dsa_questions.json
-    webdev_questions.json
-    ml_questions.json
-    systems_questions.json
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // User-owned collections: user can only read/write their own documents
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /personality_responses/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /quiz_sessions/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /quiz_responses/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /quiz_responses/{uid}/answers/{answerId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /bkt_beliefs/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /results/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}
 ```
 
-Each file is an array of question objects matching the Firestore schema above.
-
-Loading script: run once with `node scripts/load_questions.js` — reads all JSON files and batch-writes to Firestore `questions` and `personality_questions` collections.
+There are no rules for `questions` or `personality_questions` — those collections do not exist.

@@ -1,0 +1,44 @@
+[
+  {
+    "questionId": "q_webdev_001",
+    "domain": "WebDev",
+    "concept": "HTML",
+    "bloomLevel": "Remember",
+    "difficulty": "Easy",
+    "waAttributes": ["PO5"],
+    "skillAttribute": "UI Engineering",
+    "type": "MCQ",
+    "text": "Which tag is used to create a hyperlink?",
+    "options": ["<a>", "<img>", "<link>", "<href>"],
+    "correctIndex": 0,
+    "rubric": null
+  },
+  {
+    "questionId": "q_webdev_002",
+    "domain": "WebDev",
+    "concept": "CSS",
+    "bloomLevel": "Understand",
+    "difficulty": "Medium",
+    "waAttributes": ["PO5"],
+    "skillAttribute": "Styling",
+    "type": "MCQ",
+    "text": "In CSS, which property is used to clear floats?",
+    "options": ["clear", "float", "display", "position"],
+    "correctIndex": 0,
+    "rubric": null
+  },
+  {
+    "questionId": "q_webdev_003",
+    "domain": "WebDev",
+    "concept": "React",
+    "bloomLevel": "Apply",
+    "difficulty": "Hard",
+    "waAttributes": ["PO3", "PO5"],
+    "skillAttribute": "Component Design",
+    "type": "MCQ",
+    "text": "What does useEffect hook do in a React component?",
+    "options": ["Updates DOM directly", "Manges side effects", "Creates new components", "Handles state synchronously"],
+    "correctIndex": 1,
+    "rubric": null
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "questionId": "p_001",
+    "text": "I enjoy breaking down complex problems into smaller parts.",
+    "type": "likert",
+    "traitMapped": "analytical",
+    "reversed": false,
+    "order": 1
+  },
+  {
+    "questionId": "p_002",
+    "text": "I often think about how to make processes more efficient.",
+    "type": "likert",
+    "traitMapped": "optimization",
+    "reversed": false,
+    "order": 2
+  },
+  {
+    "questionId": "p_003",
+    "text": "I prefer to work on projects where the requirements are well-defined up front.",
+    "type": "likert",
+    "traitMapped": "structure",
+    "reversed": false,
+    "order": 3
+  }
+]

@@ -1,10 +1,10 @@
 # Data Access Contract Document
 ## Engineering Career Assessment System
 
-> **v2 — No Backend / No Cloud Functions**
+> **v3 — No Backend / No Cloud Functions / Questions from Local JSON**
 > All logic runs in the React frontend. There are no HTTP API endpoints.
 > Data is read and written directly via the Firebase SDK (Firestore + Auth).
-> This document replaces the previous `02_api_contract.md` that described Cloud Function endpoints.
+> **Questions are NOT stored in Firestore.** They are imported as static ES modules from local JSON files.
 
 ---
 
@@ -12,9 +12,9 @@
 
 - Backend: **None**
 - All BKT, rubric scoring, adaptive phase logic, and result generation run in the browser (client-side JS)
-- Database: Firebase Firestore (accessed directly via `firebase/firestore` SDK)
+- Database: Firebase Firestore (user data only — accessed directly via `firebase/firestore` SDK)
 - Auth: Firebase Authentication (`firebase/auth`)
-- Questions are loaded from local JSON files into Firestore once during setup
+- **Questions: local JSON files imported directly into React — never read from or written to Firestore**
 - All Firestore operations require the user to be signed in (enforced via security rules)
 
 ---
@@ -39,6 +39,42 @@ const app = initializeApp({
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 ```
+
+---
+
+## Question Bank Loading (LOCAL — not Firestore)
+
+Questions are bundled with the app as static JSON imports. This replaces any Firestore question fetching.
+
+```js
+// src/data/questionBank.js
+import dsaQuestions from '../../questionnaire/quiz/dsa_questions.json';
+import webdevQuestions from '../../questionnaire/quiz/webdev_questions.json';
+import mlQuestions from '../../questionnaire/quiz/ml_questions.json';
+import systemsQuestions from '../../questionnaire/quiz/systems_questions.json';
+
+export const questionBank = [
+  ...dsaQuestions,
+  ...webdevQuestions,
+  ...mlQuestions,
+  ...systemsQuestions,
+];
+```
+
+```js
+// src/data/personalityQuestions.js
+import personalityQuestions from '../../questionnaire/personality_questions.json';
+export { personalityQuestions };
+```
+
+Usage in components:
+```js
+// In Quiz.jsx — no async fetch needed, questions are already in memory
+import { questionBank } from '../data/questionBank';
+import { personalityQuestions } from '../data/personalityQuestions';
+```
+
+There is no loading spinner or error state needed for questions. They are synchronously available.
 
 ---
 
@@ -108,11 +144,13 @@ await updateDoc(doc(db, 'personality_responses', uid), {
 ```
 
 ### Compute and save personality vector (called after all 20 questions answered)
-This runs entirely in the browser using the scoring logic below, then writes the result.
+Questions come from the local `personalityQuestions` import. Scoring runs in-browser, then result is written.
 
 ```js
-// Scoring runs in-browser (see personality scoring logic section)
-const { personalityVector, domainPriors } = computePersonalityVector(responses);
+import { personalityQuestions } from '../data/personalityQuestions';
+
+// Scoring runs in-browser using local questions array
+const { personalityVector, domainPriors } = computePersonalityVector(responses, personalityQuestions);
 
 await updateDoc(doc(db, 'personality_responses', uid), {
   personalityVector,
@@ -141,6 +179,7 @@ const data = snap.exists() ? snap.data() : null;
 
 ```js
 // Each response is 1–5 (Likert). Reversed questions are flipped first.
+// questions array comes from local personalityQuestions import — not Firestore
 function computePersonalityVector(responses, questions) {
   const traitSums = {};
   const traitCounts = {};
@@ -178,14 +217,11 @@ function mapPersonalityToDomainPriors(pv) {
 
 ## Quiz Operations
 
-### Load question bank (once on quiz start)
-Questions are fetched from Firestore once and held in memory for the session.
-
+### Load question bank (synchronous — local import, no async fetch)
 ```js
-import { collection, getDocs } from 'firebase/firestore';
-
-const snapshot = await getDocs(collection(db, 'questions'));
-const questionBank = snapshot.docs.map(d => d.data());
+// In Quiz.jsx
+import { questionBank } from '../data/questionBank';
+// questionBank is available immediately — no loading state needed for questions
 ```
 
 ### Get quiz state (for resume)
@@ -220,15 +256,15 @@ await setDoc(doc(db, 'bkt_beliefs', uid), {
 ```
 
 ### Select next question (runs in browser)
-Entire adaptive question selection runs client-side. See `04_bkt_rubric_logic.md` for pseudocode.
+The full question bank is available locally. No Firestore read needed.
 
 ```js
-// All inputs come from in-memory state (loaded from Firestore at session start / resume)
+// questionBank is the local import — already in memory
 const nextQuestion = selectNextQuestion({
-  questionBank,
-  session,      // phase, activeDomains, questionsAnswered
-  bktBeliefs,   // concept-level beliefs
-  domainPriors, // from personality vector
+  questionBank,         // from src/data/questionBank.js local import
+  session,              // from Firestore: phase, activeDomains, questionsAnswered
+  bktBeliefs,           // from Firestore: concept-level beliefs
+  domainPriors,         // from personality_responses Firestore doc
 });
 ```
 
@@ -326,7 +362,8 @@ function evaluateAnswer(question, answerIndex) {
 }
 ```
 
-For Subjective and SubjectiveStructured: see rubric scoring in `04_bkt_rubric_logic.md`. Output is the same shape as above.
+For Subjective and SubjectiveStructured: see rubric scoring in `04_bkt_rubric_logic.md`.
+The rubric is available as `question.rubric` directly from the local JSON file — no Firestore fetch needed.
 
 ---
 
@@ -422,3 +459,4 @@ All Firestore operations should be wrapped in try/catch. Display user-friendly m
 
 Free tier: 50,000 reads + 20,000 writes per day.
 At ~100 operations per user, the free tier supports ~200 active users per day with comfortable headroom.
+Note: zero Firestore reads for questions — they are bundled locally.

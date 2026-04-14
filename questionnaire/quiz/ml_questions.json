@@ -1,0 +1,44 @@
+[
+  {
+    "questionId": "q_ml_001",
+    "domain": "ML",
+    "concept": "Supervised Learning",
+    "bloomLevel": "Remember",
+    "difficulty": "Easy",
+    "waAttributes": ["PO1"],
+    "skillAttribute": "Data Analysis",
+    "type": "MCQ",
+    "text": "Which of these is a supervised learning algorithm?",
+    "options": ["K-Means", "PCA", "Linear Regression", "Apriori"],
+    "correctIndex": 2,
+    "rubric": null
+  },
+  {
+    "questionId": "q_ml_002",
+    "domain": "ML",
+    "concept": "Evaluation",
+    "bloomLevel": "Understand",
+    "difficulty": "Medium",
+    "waAttributes": ["PO2"],
+    "skillAttribute": "Model Tuning",
+    "type": "MCQ",
+    "text": "What metric is best for a highly imbalanced classification dataset?",
+    "options": ["Accuracy", "F1 Score", "Mean Squared Error", "R2 Score"],
+    "correctIndex": 1,
+    "rubric": null
+  },
+  {
+    "questionId": "q_ml_003",
+    "domain": "ML",
+    "concept": "Neural Networks",
+    "bloomLevel": "Apply",
+    "difficulty": "Hard",
+    "waAttributes": ["PO3"],
+    "skillAttribute": "Deep Learning",
+    "type": "MCQ",
+    "text": "What activation function is typically used in the output layer for binary classification?",
+    "options": ["ReLU", "Softmax", "Sigmoid", "Tanh"],
+    "correctIndex": 2,
+    "rubric": null
+  }
+]
