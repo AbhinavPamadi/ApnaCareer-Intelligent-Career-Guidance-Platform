@@ -1,3 +1,246 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg: #eef2f7;
+  --card: #ffffff;
+  --text: #111827;
+  --border: #e2e8f0;
+  --input-bg: #ffffff;
+  --input-text: #111827;
+  --input-placeholder: #9ca3af;
+  --input-border: #e2e8f0;
+  --focus-ring: #2563eb;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --surface-soft: #f1f5f9;
+  --surface-strong: #e5e7eb;
+  --nav-bg: #ffffff;
+  --nav-border: #e2e8f0;
+  --nav-text: #111827;
+  --brand-text: #2563eb;
+  --active-pill-bg: #dbeafe;
+  --active-pill-text: #2563eb;
+  --tab-hover-bg: #f1f5f9;
+  --tab-hover-text: #111827;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  --card-glow: 0 0 0 rgba(0, 0, 0, 0);
+  --heading: #111827;
+  --body-text: #6b7280;
+  --text-soft: #4b5563;
+  --text-faint: #9ca3af;
+  --border-soft: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --button-bg: #2563eb;
+  --button-hover-bg: #1d4ed8;
+  --button-gradient: #2563eb;
+  --button-gradient-end: #2563eb;
+  --button-gradient-hover: #1d4ed8;
+  --button-gradient-end-hover: #1d4ed8;
+  --button-shadow: 0 10px 24px rgba(37, 99, 235, 0.26);
+  --button-hover-shadow: 0 12px 28px rgba(29, 78, 216, 0.3);
+  --logout-border: #e5e7eb;
+  --logout-text: #4b5563;
+  --logout-hover-bg: #f8fafc;
+  --logout-hover-text: #111827;
+  --dropdown-bg: #ffffff;
+  --dropdown-border: #e5e7eb;
+  --dropdown-shadow: 0 14px 30px rgba(15, 23, 42, 0.1);
+  --dropdown-text: #111827;
+  --dropdown-hover-bg: #f1f5f9;
+  --dropdown-active-bg: #dbeafe;
+  --dropdown-active-text: #2563eb;
+}
+
+.dark {
+  --bg: #0d0d14;
+  --card: #13131a;
+  --text: #ffffff;
+  --border: #1e1e2e;
+  --input-bg: #13131a;
+  --input-text: #ffffff;
+  --input-placeholder: #9ca3af;
+  --input-border: #1e1e2e;
+  --surface: #131320;
+  --surface-muted: #171723;
+  --surface-soft: #1d1d2d;
+  --surface-strong: #25253a;
+  --nav-bg: #0d0d14;
+  --nav-border: transparent;
+  --nav-text: #ffffff;
+  --brand-text: #60a5fa;
+  --active-pill-bg: #1a1a2e;
+  --active-pill-text: #f3f4f6;
+  --tab-hover-bg: #171723;
+  --tab-hover-text: #ffffff;
+  --card-bg: linear-gradient(145deg, #1a1a2e, #111118);
+  --card-border: #1e1e2e;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --card-glow: 0 0 0 1px rgba(124, 58, 237, 0.08), 0 0 30px rgba(37, 99, 235, 0.08);
+  --heading: #ffffff;
+  --body-text: #9ca3af;
+  --text-soft: #d1d5db;
+  --text-faint: #9ca3af;
+  --border-soft: #242437;
+  --border-strong: #2f2f45;
+  --button-bg: #2563eb;
+  --button-hover-bg: #2563eb;
+  --button-gradient: #2563eb;
+  --button-gradient-end: #7c3aed;
+  --button-gradient-hover: #3b82f6;
+  --button-gradient-end-hover: #8b5cf6;
+  --button-shadow: 0 10px 24px rgba(37, 99, 235, 0.3);
+  --button-hover-shadow: 0 0 0 1px rgba(124, 58, 237, 0.32), 0 14px 34px rgba(55, 48, 163, 0.38);
+  --logout-border: #2b2b3f;
+  --logout-text: #d1d5db;
+  --logout-hover-bg: #171723;
+  --logout-hover-text: #ffffff;
+  --dropdown-bg: #141421;
+  --dropdown-border: #242437;
+  --dropdown-shadow: 0 18px 35px rgba(0, 0, 0, 0.48);
+  --dropdown-text: #e5e7eb;
+  --dropdown-hover-bg: #1d1d2d;
+  --dropdown-active-bg: #202039;
+  --dropdown-active-text: #93c5fd;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--nav-text);
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+#root {
+  background: var(--bg);
+  color: var(--nav-text);
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+.dark .bg-white {
+  background-color: var(--surface) !important;
+}
+
+.dark .bg-gray-50,
+.dark .bg-blue-50,
+.dark .bg-slate-50 {
+  background-color: var(--surface-muted) !important;
+}
+
+.dark .bg-gray-100,
+.dark .bg-blue-100,
+.dark .bg-slate-100 {
+  background-color: var(--surface-soft) !important;
+}
+
+.dark .bg-gray-200,
+.dark .bg-blue-200,
+.dark .bg-slate-200 {
+  background-color: var(--surface-strong) !important;
+}
+
+.dark .text-black,
+.dark .text-gray-900,
+.dark .text-gray-800 {
+  color: var(--heading) !important;
+}
+
+.dark .text-gray-700,
+.dark .text-gray-600,
+.dark .text-gray-500 {
+  color: var(--text-soft) !important;
+}
+
+.dark .text-gray-400 {
+  color: var(--text-faint) !important;
+}
+
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-blue-100,
+.dark .border-blue-200,
+.dark .border-slate-100,
+.dark .border-slate-200 {
+  border-color: var(--border-soft) !important;
+}
+
+.dark .border-gray-300,
+.dark .border-blue-300,
+.dark .border-slate-300 {
+  border-color: var(--border-strong) !important;
+}
+
+.dark .from-blue-50,
+.dark .from-gray-50,
+.dark .from-white {
+  --tw-gradient-from: var(--bg) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(13 13 20 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.dark .to-white,
+.dark .to-gray-50,
+.dark .to-blue-50 {
+  --tw-gradient-to: var(--bg) var(--tw-gradient-to-position) !important;
+}
+
+input,
+select,
+textarea {
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  border-color: var(--input-border);
+  caret-color: var(--input-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--input-placeholder);
+  opacity: 1;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+select,
+option {
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.dark input,
+.dark textarea,
+.dark select,
+.dark option {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border-color: var(--input-border) !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: var(--input-placeholder) !important;
+}
+
+.theme-primary-btn {
+  background-image: linear-gradient(to right, var(--button-gradient), var(--button-gradient-end));
+  box-shadow: var(--button-shadow);
+  transition: filter 200ms ease, box-shadow 200ms ease, background-image 200ms ease;
+}
+
+.theme-primary-btn:hover {
+  background-image: linear-gradient(to right, var(--button-gradient-hover), var(--button-gradient-end-hover));
+  box-shadow: var(--button-hover-shadow);
+}

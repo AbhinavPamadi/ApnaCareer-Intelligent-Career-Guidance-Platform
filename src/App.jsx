@@ -23,27 +23,29 @@ export default function App() {
   return (
     <ToastProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/auth" element={<Auth />} />
-          
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/personality" element={<ProtectedRoute><Personality /></ProtectedRoute>} />
-          <Route path="/quiz/intro" element={<ProtectedRoute><QuizIntro /></ProtectedRoute>} />
-          <Route path="/quiz" element={<ProtectedRoute><Quiz /></ProtectedRoute>} />
-          <Route path="/quiz/stage3" element={<ProtectedRoute><Stage3Quiz /></ProtectedRoute>} />
-          <Route path="/results" element={<ProtectedRoute><Results /></ProtectedRoute>} />
-          <Route path="/timeline" element={<ProtectedRoute><Timeline /></ProtectedRoute>} />
-          <Route path="/forum" element={<ProtectedRoute><Forum /></ProtectedRoute>} />
-          <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
-          <Route path="/news" element={<ProtectedRoute><News /></ProtectedRoute>} />
-          <Route path="/forum/q-and-a" element={<ProtectedRoute><ForumQnA /></ProtectedRoute>} />
-          <Route path="/forum/peer-mentor-matching" element={<ProtectedRoute><ForumMentorMatching /></ProtectedRoute>} />
-          <Route path="/forum/study-buddy-finder" element={<ProtectedRoute><ForumStudyBuddy /></ProtectedRoute>} />
-          <Route path="/forum/reality-check" element={<ProtectedRoute><ForumRealityCheck /></ProtectedRoute>} />
-          
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+        <div className="min-h-screen bg-[var(--bg)] text-[var(--nav-text)] transition-colors duration-200">
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/auth" element={<Auth />} />
+            
+            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/personality" element={<ProtectedRoute><Personality /></ProtectedRoute>} />
+            <Route path="/quiz/intro" element={<ProtectedRoute><QuizIntro /></ProtectedRoute>} />
+            <Route path="/quiz" element={<ProtectedRoute><Quiz /></ProtectedRoute>} />
+            <Route path="/quiz/stage3" element={<ProtectedRoute><Stage3Quiz /></ProtectedRoute>} />
+            <Route path="/results" element={<ProtectedRoute><Results /></ProtectedRoute>} />
+            <Route path="/timeline" element={<ProtectedRoute><Timeline /></ProtectedRoute>} />
+            <Route path="/forum" element={<ProtectedRoute><Forum /></ProtectedRoute>} />
+            <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
+            <Route path="/news" element={<ProtectedRoute><News /></ProtectedRoute>} />
+            <Route path="/forum/q-and-a" element={<ProtectedRoute><ForumQnA /></ProtectedRoute>} />
+            <Route path="/forum/peer-mentor-matching" element={<ProtectedRoute><ForumMentorMatching /></ProtectedRoute>} />
+            <Route path="/forum/study-buddy-finder" element={<ProtectedRoute><ForumStudyBuddy /></ProtectedRoute>} />
+            <Route path="/forum/reality-check" element={<ProtectedRoute><ForumRealityCheck /></ProtectedRoute>} />
+            
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </ToastProvider>
   );

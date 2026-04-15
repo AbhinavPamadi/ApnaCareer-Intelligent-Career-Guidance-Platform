@@ -147,21 +147,29 @@ export default function Dashboard() {
   }
 
   const { assessmentStatus, currentPhase, personalityComplete, quizComplete, stage3Complete } = userData;
+  const isNotStarted = assessmentStatus === 'not_started';
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-50 flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[var(--bg)] transition-colors duration-200">
       <Navbar />
 
-      <main className="flex-1 max-w-4xl mx-auto w-full p-6">
-        {assessmentStatus === 'not_started' && (
-          <div className="bg-white rounded-2xl shadow p-8 text-center space-y-6 border border-blue-100 mt-10">
-            <h2 className="text-3xl font-bold text-gray-900">Welcome to Apna Career!</h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
+      <main className={`flex-1 w-full ${isNotStarted ? 'flex items-center justify-center px-6 py-12' : 'max-w-4xl mx-auto p-6'}`}>
+        {isNotStarted && (
+          <div
+            className="w-full max-w-[600px] -translate-y-6 rounded-2xl border px-10 py-12 text-center space-y-6"
+            style={{
+              background: 'var(--card-bg)',
+              borderColor: 'var(--card-border)',
+              boxShadow: 'var(--card-shadow), var(--card-glow)',
+            }}
+          >
+            <h2 className="text-5xl font-bold leading-tight tracking-[-0.01em] text-[var(--heading)]">Welcome to Apna Career!</h2>
+            <p className="max-w-xl mx-auto text-lg leading-8 text-[var(--body-text)]">
               Your journey begins here. You will first take a brief personality quiz to help us understand your traits, followed by an adaptive technical assessment aligned with the Washington Accord.
             </p>
             <button
               onClick={handleStartAssessment}
-              className="inline-block bg-blue-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow hover:bg-blue-700 transition"
+              className="theme-primary-btn inline-block text-white font-bold text-lg px-10 py-3.5 rounded-full"
             >
               Start Assessment
             </button>

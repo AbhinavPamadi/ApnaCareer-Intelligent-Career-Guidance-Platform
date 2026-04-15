@@ -5,6 +5,24 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>temp_vite</title>
+    <script>
+      (() => {
+        const mode = localStorage.getItem('apnaCareerThemeMode');
+        const legacyTheme = localStorage.getItem('apnaCareerTheme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const normalizedMode =
+          mode === 'light' || mode === 'dark' || mode === 'system'
+            ? mode
+            : legacyTheme === 'light' || legacyTheme === 'dark'
+              ? legacyTheme
+              : 'system';
+        const shouldUseDark = normalizedMode === 'system' ? prefersDark : normalizedMode === 'dark';
+
+        document.documentElement.classList.toggle('dark', shouldUseDark);
+        localStorage.setItem('apnaCareerThemeMode', normalizedMode);
+        localStorage.setItem('apnaCareerTheme', shouldUseDark ? 'dark' : 'light');
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
