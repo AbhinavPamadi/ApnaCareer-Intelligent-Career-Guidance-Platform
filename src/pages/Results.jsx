@@ -223,6 +223,11 @@ export default function Results() {
                 GitHub-verified insights were generated using repositories from <span className="font-semibold">@{results.stage3.githubUsername}</span>.
               </p>
             )}
+            {results.stage3?.linkedinUrl && (
+              <p className="text-sm text-gray-600 mt-2">
+                LinkedIn profile: <a href={results.stage3.linkedinUrl} target="_blank" rel="noreferrer" className="font-semibold text-blue-700 underline">{results.stage3.linkedinUrl}</a>
+              </p>
+            )}
           </div>
         )}
 

@@ -10,6 +10,7 @@ import {
   blendDomainScores,
   evaluateStage3Answer,
   fetchGithubRepos,
+  fetchLinkedinProfile,
   generateStage3Questions,
 } from '../engine/stage3';
 import { useToast } from '../components/ToastContext';
@@ -21,6 +22,8 @@ export default function Stage3Quiz() {
   const [loading, setLoading] = useState(true);
   const [processing, setProcessing] = useState(false);
   const [githubUsername, setGithubUsername] = useState('');
+  const [linkedinUrl, setLinkedinUrl] = useState('');
+  const [linkedinProfileSummary, setLinkedinProfileSummary] = useState('');
   const [repos, setRepos] = useState([]);
   const [selectedRepoIds, setSelectedRepoIds] = useState([]);
   const [questions, setQuestions] = useState([]);
@@ -35,6 +38,7 @@ export default function Stage3Quiz() {
 
   const currentQuestion = questions[index] || null;
   const progress = questions.length ? Math.round((index / questions.length) * 100) : 0;
+  const hasAnyProfileData = repos.length > 0 || Boolean(linkedinProfileSummary.trim());
 
   useEffect(() => {
     async function bootstrap() {
@@ -76,33 +80,78 @@ export default function Stage3Quiz() {
     );
   };
 
-  const handleFetchRepos = async () => {
+  const handleFetchNow = async () => {
+    if (!githubUsername.trim() && !linkedinUrl.trim()) {
+      addToast('Enter a GitHub username or LinkedIn profile URL to fetch profile data.', 'error');
+      return;
+    }
+
     setProcessing(true);
     try {
-      const fetched = await fetchGithubRepos(githubUsername);
-      setRepos(fetched);
+      const githubPromise = githubUsername.trim()
+        ? fetchGithubRepos(githubUsername)
+        : Promise.resolve([]);
+
+      const linkedinPromise = linkedinUrl.trim()
+        ? fetchLinkedinProfile(linkedinUrl)
+        : Promise.resolve(null);
+
+      const [githubData, linkedinData] = await Promise.allSettled([githubPromise, linkedinPromise]);
+
+      const fetchedRepos = githubData.status === 'fulfilled' ? githubData.value : [];
+      const linkedProfile = linkedinData.status === 'fulfilled' ? linkedinData.value : null;
+
+      setRepos(fetchedRepos);
       setSelectedRepoIds([]);
-      if (!fetched.length) addToast('No public repositories found for this username.', 'info');
+      if (linkedProfile) {
+        setLinkedinProfileSummary(linkedProfile.profileSummary || '');
+      } else {
+        setLinkedinProfileSummary('');
+      }
+
+      if (githubData.status === 'rejected') {
+        console.error(githubData.reason);
+      }
+      if (linkedinData.status === 'rejected') {
+        console.error(linkedinData.reason);
+      }
+
+      const hasAnyData = fetchedRepos.length > 0 || Boolean(linkedProfile);
+      if (!hasAnyData) {
+        addToast('No profile data could be fetched. Please check the URL and try again.', 'error');
+      } else {
+        addToast('Profile data fetched successfully.', 'success');
+      }
     } catch (err) {
       console.error(err);
-      addToast(err.message || 'Failed to fetch repositories.', 'error');
+      addToast(err.message || 'Failed to fetch profile data.', 'error');
     } finally {
       setProcessing(false);
     }
   };
 
   const handleGenerateQuestions = async () => {
-    if (selectedRepos.length < 1) {
-      addToast('Select at least one repository to continue.', 'error');
+    const effectiveRepos = selectedRepos.length > 0 ? selectedRepos : repos.slice(0, 3);
+    const hasGitHubSelection = effectiveRepos.length > 0;
+    const hasLinkedInProfile = Boolean(linkedinProfileSummary.trim());
+
+    if (!hasGitHubSelection && !hasLinkedInProfile) {
+      addToast('Fetch a GitHub profile or LinkedIn profile before generating questions.', 'error');
       return;
     }
+
+    if (githubUsername.trim() && repos.length > 0 && selectedRepos.length === 0) {
+      setSelectedRepoIds(effectiveRepos.map((r) => String(r.id)));
+    }
+
     setProcessing(true);
     try {
       const uid = auth.currentUser.uid;
       const bktData = await getDoc(doc(db, 'bkt_beliefs', uid)).then((s) => s.data());
       const generated = await generateStage3Questions({
         githubUsername,
-        repos: selectedRepos,
+        repos: hasGitHubSelection ? effectiveRepos : [],
+        linkedinProfileSummary,
         priorDomainBeliefs: bktData?.domainBeliefs || {},
       });
       if (!generated.length) throw new Error('Could not generate Stage 3 questions.');
@@ -118,8 +167,18 @@ export default function Stage3Quiz() {
     }
   };
 
+  const normalizeLinkedInUrl = (rawValue) => {
+    const value = (rawValue || '').trim();
+    if (!value) return '';
+    if (/^https?:\/\//i.test(value)) return value;
+    if (value.startsWith('linkedin.com')) return `https://${value}`;
+    if (!value.includes('linkedin.com')) return `https://linkedin.com/in/${value.replace(/^@/, '').replace(/\s+/g, '')}`;
+    return value;
+  };
+
   const finalizeResults = async (finalEvaluations) => {
     const uid = auth.currentUser.uid;
+    const normalizedLinkedinUrl = normalizeLinkedInUrl(linkedinUrl);
     const [bktData, personalityData, sessionData] = await Promise.all([
       getDoc(doc(db, 'bkt_beliefs', uid)).then((s) => s.data()),
       getDoc(doc(db, 'personality_responses', uid)).then((s) => s.data()),
@@ -150,6 +209,7 @@ export default function Stage3Quiz() {
       generatedAt: new Date().toISOString(),
       stage3: {
         githubUsername,
+        linkedinUrl: normalizedLinkedinUrl,
         selectedRepos: selectedRepos.map((r) => ({
           id: r.id,
           name: r.name,
@@ -179,6 +239,7 @@ export default function Stage3Quiz() {
         {
           uid,
           githubUsername,
+          linkedinUrl: normalizedLinkedinUrl,
           selectedRepos: selectedRepos.map((r) => r.full_name),
           completedAt: new Date().toISOString(),
           evaluations: finalEvaluations,
@@ -197,10 +258,11 @@ export default function Stage3Quiz() {
   };
 
   const handleSkipStage3 = async () => {
-    if (!window.confirm('Skip Stage 3 GitHub evaluation and finish with current Stage 2 results?')) return;
+    if (!window.confirm('Skip Stage 3 evaluation and finish with your current Stage 2 results?')) return;
     setProcessing(true);
     try {
       const uid = auth.currentUser.uid;
+      const normalizedLinkedinUrl = normalizeLinkedInUrl(linkedinUrl);
       const [bktData, personalityData, sessionData] = await Promise.all([
         getDoc(doc(db, 'bkt_beliefs', uid)).then((s) => s.data()),
         getDoc(doc(db, 'personality_responses', uid)).then((s) => s.data()),
@@ -227,6 +289,7 @@ export default function Stage3Quiz() {
           skipped: true,
           skippedAt: new Date().toISOString(),
           githubUsername: githubUsername || '',
+          linkedinUrl: normalizedLinkedinUrl,
           selectedRepos: [],
           averageScore: null,
           domainSignals: null,
@@ -252,6 +315,7 @@ export default function Stage3Quiz() {
             skipped: true,
             skippedAt: new Date().toISOString(),
             githubUsername: githubUsername || '',
+            linkedinUrl: normalizedLinkedinUrl,
           },
           { merge: true }
         ),
@@ -316,9 +380,9 @@ export default function Stage3Quiz() {
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
       <div className="max-w-4xl mx-auto bg-white border border-gray-100 shadow-sm rounded-xl p-6 sm:p-8 space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Stage 3: GitHub Project Evaluation</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Stage 3: GitHub + LinkedIn Evaluation</h1>
           <p className="text-gray-600 mt-2">
-            Add your GitHub username, pick projects, answer project-specific LLM questions, and finalize your domain fit.
+            Add your GitHub username or LinkedIn profile, select relevant work, answer project-specific LLM questions, and finalize your domain fit.
           </p>
           <div className="mt-4">
             <button
@@ -333,50 +397,75 @@ export default function Stage3Quiz() {
 
         {questions.length === 0 && (
           <>
-            <div className="space-y-2">
-              <label className="text-sm font-semibold text-gray-700">GitHub Username</label>
-              <div className="flex gap-2">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-gray-700">GitHub Username</label>
                 <input
                   value={githubUsername}
                   onChange={(e) => setGithubUsername(e.target.value)}
                   placeholder="e.g. octocat"
-                  className="flex-1 border border-gray-300 rounded-lg px-4 py-2"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2"
                 />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-gray-700">LinkedIn Profile URL</label>
+                <input
+                  value={linkedinUrl}
+                  onChange={(e) => setLinkedinUrl(e.target.value)}
+                  placeholder="e.g. linkedin.com/in/yourname or https://linkedin.com/in/yourname"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                />
+              </div>
+
+              <div className="flex justify-center">
                 <button
-                  onClick={handleFetchRepos}
-                  disabled={processing || !githubUsername.trim()}
-                  className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg disabled:opacity-50"
+                  onClick={handleFetchNow}
+                  disabled={processing || (!githubUsername.trim() && !linkedinUrl.trim())}
+                  className="bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-lg disabled:opacity-50"
                 >
-                  {processing ? 'Fetching...' : 'Fetch Projects'}
+                  {processing ? 'Fetching...' : 'Fetch Now'}
                 </button>
               </div>
             </div>
 
-            {repos.length > 0 && (
+            {hasAnyProfileData && (
               <div className="space-y-3">
-                <p className="font-semibold text-gray-800">Select projects to base questions on</p>
-                <div className="max-h-72 overflow-y-auto border border-gray-200 rounded-lg divide-y divide-gray-100">
-                  {repos.map((repo) => (
-                    <label key={repo.id} className="flex items-start gap-3 p-3 cursor-pointer hover:bg-gray-50">
-                      <input
-                        type="checkbox"
-                        checked={selectedRepoIds.includes(String(repo.id))}
-                        onChange={() => toggleRepo(String(repo.id))}
-                        className="mt-1"
-                      />
-                      <div>
-                        <p className="font-medium text-gray-900">{repo.full_name}</p>
-                        <p className="text-sm text-gray-600">{repo.description || 'No description'}</p>
-                        <p className="text-xs text-gray-500 mt-1">
-                          {repo.language} • ⭐ {repo.stargazers_count} • Forks {repo.forks_count}
-                        </p>
-                      </div>
-                    </label>
-                  ))}
-                </div>
+                {repos.length > 0 && (
+                  <>
+                    <p className="font-semibold text-gray-800">Select projects to base questions on</p>
+                    <div className="max-h-72 overflow-y-auto border border-gray-200 rounded-lg divide-y divide-gray-100">
+                      {repos.map((repo) => (
+                        <label key={repo.id} className="flex items-start gap-3 p-3 cursor-pointer hover:bg-gray-50">
+                          <input
+                            type="checkbox"
+                            checked={selectedRepoIds.includes(String(repo.id))}
+                            onChange={() => toggleRepo(String(repo.id))}
+                            className="mt-1"
+                          />
+                          <div>
+                            <p className="font-medium text-gray-900">{repo.full_name}</p>
+                            <p className="text-sm text-gray-600">{repo.description || 'No description'}</p>
+                            <p className="text-xs text-gray-500 mt-1">
+                              {repo.language} • ⭐ {repo.stargazers_count} • Forks {repo.forks_count}
+                            </p>
+                          </div>
+                        </label>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {linkedinProfileSummary.trim() && (
+                  <div className="rounded-lg border border-green-200 bg-green-50 p-3">
+                    <p className="font-semibold text-gray-800">LinkedIn profile ready</p>
+                    <p className="text-sm text-gray-600 mt-1">{linkedinProfileSummary.slice(0, 220)}{linkedinProfileSummary.length > 220 ? '...' : ''}</p>
+                  </div>
+                )}
+
                 <button
                   onClick={handleGenerateQuestions}
-                  disabled={processing || selectedRepos.length === 0}
+                  disabled={processing || (!selectedRepos.length && !linkedinProfileSummary.trim())}
                   className="bg-indigo-600 text-white font-semibold px-4 py-2 rounded-lg disabled:opacity-50"
                 >
                   {processing ? 'Generating...' : 'Generate Stage 3 Questions'}
