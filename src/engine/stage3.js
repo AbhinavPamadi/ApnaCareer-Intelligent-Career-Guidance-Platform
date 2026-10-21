@@ -69,86 +69,53 @@ export async function fetchGithubRepos(username) {
 function normalizeLinkedInProfile(profile) {
   if (!profile || typeof profile !== 'object') return '';
 
-  const pick = (...keys) => {
-    for (const key of keys) {
-      const value = profile?.[key];
-      if (typeof value === 'string' && value.trim()) return value.trim();
-    }
-    return '';
-  };
-
-  const asTextList = (items = [], fieldNames = []) => {
-    return items
-      .map((item) => {
-        const candidate = fieldNames
-          .map((field) => {
-            const value = item?.[field];
-            return typeof value === 'string' ? value.trim() : '';
-          })
-          .find(Boolean);
-        return candidate || '';
-      })
-      .filter(Boolean)
-      .slice(0, 8);
-  };
-
-  const name = pick('name', 'full_name', 'first_name', 'last_name');
-  const headline = pick('headline', 'title', 'professionalHeadline', 'position');
-  const summary = pick('summary', 'about', 'description', 'profileSummary', 'bio');
-  const location = pick('location', 'city', 'country_name', 'country_code');
-  const educationItems = Array.isArray(profile.education) ? profile.education : Array.isArray(profile.educations_details) ? profile.educations_details : [];
-  const projects = Array.isArray(profile.projects) ? profile.projects : [];
-  const experience = Array.isArray(profile.experience) ? profile.experience : [];
-  const skills = Array.isArray(profile.skills) ? profile.skills : [];
-  const certifications = Array.isArray(profile.certifications) ? profile.certifications : [];
-  const awards = Array.isArray(profile.honors_and_awards) ? profile.honors_and_awards : [];
-
-  const educationText = asTextList(educationItems, ['title', 'school', 'institution', 'degree', 'name'])
-    .concat(asTextList(Array.isArray(profile.education) ? profile.education : [], ['title']))
-    .filter(Boolean)
-    .slice(0, 5)
-    .join(' | ');
-
-  const projectText = projects
-    .slice(0, 5)
+  const collectItems = (...values) => values.flatMap((value) => {
+    if (Array.isArray(value)) return value;
+    return typeof value === 'string' && value.trim() ? [value] : [];
+  });
+  const formatItems = (items, fields) => items
     .map((item) => {
-      const title = typeof item?.title === 'string' ? item.title.trim() : typeof item?.name === 'string' ? item.name.trim() : '';
-      const desc = typeof item?.description === 'string' ? item.description.trim() : '';
-      return desc ? `${title}${title ? ': ' : ''}${desc.slice(0, 220)}` : title;
+      if (typeof item === 'string') return item.trim();
+      if (!item || typeof item !== 'object') return '';
+      return fields
+        .map((field) => item[field])
+        .filter((value) => typeof value === 'string' && value.trim())
+        .map((value) => value.trim())
+        .filter((value, index, allValues) => allValues.indexOf(value) === index)
+        .join(' | ');
     })
     .filter(Boolean)
-    .join(' | ');
+    .slice(0, 8);
 
-  const experienceText = experience
-    .slice(0, 4)
-    .map((job) => {
-      const role = typeof job?.title === 'string' ? job.title.trim() : '';
-      const company = typeof job?.company === 'string' ? job.company.trim() : typeof job?.organization === 'string' ? job.organization.trim() : '';
-      const desc = typeof job?.description === 'string' ? job.description.trim() : '';
-      return [role, company].filter(Boolean).join(' at ') + (desc ? `: ${desc.slice(0, 220)}` : '');
-    })
-    .filter(Boolean)
-    .join(' | ');
+  const experience = collectItems(profile.experience, profile.experiences, profile.positions);
+  const internships = collectItems(profile.internships, profile.internship_experience)
+    .concat(experience.filter((item) => {
+      if (typeof item === 'string') return /\bintern(ship)?\b/i.test(item);
+      const role = [item?.title, item?.role, item?.employment_type, item?.employmentType]
+        .filter((value) => typeof value === 'string')
+        .join(' ');
+      return /\bintern(ship)?\b/i.test(role);
+    }));
+  const otherExperience = experience.filter((item) => !internships.includes(item));
+  const licensesAndCertifications = collectItems(
+    profile.licenses_and_certifications,
+    profile.licensesAndCertifications,
+    profile.licenses,
+    profile.certifications
+  );
+  const publications = collectItems(profile.publications, profile.published_works, profile.papers);
 
-  const skillsText = [...skills, ...certifications].slice(0, 12).join(', ');
-  const achievementText = Array.isArray(profile.honors_and_awards)
-    ? profile.honors_and_awards.slice(0, 5).join(' | ')
-    : Array.isArray(profile.achievements)
-      ? profile.achievements.slice(0, 5).join(' | ')
-      : '';
+  const sections = [
+    ['Internships', formatItems(internships, ['title', 'role', 'company', 'organization', 'employment_type', 'start_date', 'end_date', 'description'])],
+    ['Experience', formatItems(otherExperience, ['title', 'role', 'company', 'organization', 'employment_type', 'start_date', 'end_date', 'description'])],
+    ['Licenses and certifications', formatItems(licensesAndCertifications, ['title', 'name', 'license_name', 'issuer', 'authority', 'organization', 'issue_date', 'expiration_date', 'license_number'])],
+    ['Publications', formatItems(publications, ['title', 'name', 'publisher', 'publication_date', 'date', 'description', 'url'])],
+  ];
 
-  const parts = [
-    name ? `${name}${headline ? ` — ${headline}` : ''}` : headline,
-    location,
-    summary,
-    experienceText,
-    educationText,
-    projectText,
-    skillsText,
-    achievementText,
-  ].filter(Boolean);
-
-  return parts.slice(0, 8).join('\n\n');
+  return sections
+    .filter(([, items]) => items.length)
+    .map(([label, items]) => `${label}: ${items.join(' | ')}`)
+    .join('\n\n');
 }
 
 export async function fetchLinkedinProfile(url) {
@@ -177,7 +144,7 @@ export async function fetchLinkedinProfile(url) {
 
   const profileSummary = normalizeLinkedInProfile(profile);
   if (!profileSummary) {
-    throw new Error('The LinkedIn profile did not contain enough usable information to generate a quiz.');
+    throw new Error('No internship, professional experience, license/certification, or publication details were found in this LinkedIn profile. Add those details publicly or skip Stage 4.');
   }
 
   return {
@@ -187,7 +154,12 @@ export async function fetchLinkedinProfile(url) {
   };
 }
 
-export async function generateStage3Questions({ githubUsername, repos = [], linkedinProfileSummary = '', priorDomainBeliefs = {} }) {
+export async function generateStage3Questions({ source, githubUsername, repos = [], linkedinProfileSummary = '', priorDomainBeliefs = {} }) {
+  if (source !== 'github' && source !== 'linkedin') {
+    throw new Error('Choose GitHub or LinkedIn as the question source.');
+  }
+  const questionCount = source === 'linkedin' ? 3 : 5;
+
   const trimmed = repos.slice(0, 8).map((r) => ({
     name: r.name,
     description: r.description,
@@ -196,30 +168,12 @@ export async function generateStage3Questions({ githubUsername, repos = [], link
     stars: r.stargazers_count || 0,
   }));
 
-  const prompt = `Generate exactly 5 interview questions grounded in the selected profile data.
-GitHub username: ${githubUsername || 'not provided'}
-GitHub projects: ${JSON.stringify(trimmed)}
-LinkedIn summary: ${linkedinProfileSummary || 'not provided'}
+  const prompt = source === 'github'
+    ? `Generate exactly 5 interview questions grounded in the selected GitHub projects.
+GitHub username: ${githubUsername}
+Projects: ${JSON.stringify(trimmed)}
 Prior domain beliefs: ${JSON.stringify(priorDomainBeliefs)}
 Allowed domains: ${JSON.stringify(DOMAIN_KEYS)}
-
-Goal:
-- Keep GitHub as the main technical source for implementation depth, architecture, debugging, ownership, and system thinking.
-- Use LinkedIn as the complementary source for internships, hackathons, certifications, projects, experience, leadership, teamwork, and broader career context.
-- Mix both sources across the 5 questions instead of making the whole set LinkedIn-only or GitHub-only.
-- If the same work appears in both sources, do not ask a duplicate question.
-- Prefer questions that cover evidence not already visible in GitHub and add the missing context from LinkedIn.
-
-Specific distribution requirement for the 5 questions when both sources are available:
-- Exactly 2 questions must be pure GitHub questions.
-- Exactly 2 questions must be pure LinkedIn questions.
-- Exactly 1 question must be a mixed GitHub + LinkedIn question.
-- A pure GitHub question must be grounded only in GitHub technical work, repo ownership, architecture, debugging, implementation, or system thinking.
-- A pure LinkedIn question must be grounded only in LinkedIn internship, project, hackathon, certificate, leadership, teamwork, or career experience evidence.
-- The mixed question must combine both GitHub and LinkedIn evidence in the same question.
-- If one source is missing, keep only the valid questions available and do not invent facts.
-- Do not create extra mixed or hybrid questions beyond the required 1.
-- Do not repeat repository-level or project-level questions if the same work is already represented in GitHub.
 
 Return JSON:
 {
@@ -235,31 +189,52 @@ Return JSON:
 }
 
 Rules:
-- Questions must be project-specific, ownership-testing, and realistic.
-- Focus on technical implementation, internship experience, hackathons, capstone projects, extracurricular work, team collaboration, problem-solving, and career impact.
-- GitHub must remain the primary technical source for system design, debugging, architecture, code ownership, and implementation depth.
-- LinkedIn should provide internships, leadership, project experience, and broader career context.
-- Follow the exact distribution strictly: 2 pure GitHub, 2 pure LinkedIn, 1 mixed.
-- Never produce more than 2 GitHub-only questions, more than 2 LinkedIn-only questions, or more than 1 mixed question.
-- Use the strongest available evidence without inventing achievements or credentials.
-- expectedPoints should be concise and concrete.`;
+- Questions must be project-specific and ownership-testing.
+- Include implementation and design depth.
+- expectedPoints should be concise and concrete.`
+  : `Generate exactly ${questionCount} distinct interview questions grounded only in these LinkedIn profile sections.
+LinkedIn profile summary: ${linkedinProfileSummary || 'not provided'}
+Prior domain beliefs: ${JSON.stringify(priorDomainBeliefs)}
+Allowed domains: ${JSON.stringify(DOMAIN_KEYS)}
 
-  const parsed = await callGroqJSON([
+Focus exclusively on internships, professional experience, licenses and certifications, and publications. Ask specific follow-up questions about the candidate's responsibilities, contributions, tools, outcomes, learning, credential scope, or publication process where supported by the provided evidence. Do not ask about projects, education, skills, or other profile sections; do not mention GitHub or invent details. If a category has no evidence, use the other included categories instead.
+
+Return JSON with a questions array containing exactly ${questionCount} questions. Each question must have questionId, text, domain, difficulty, and concise expectedPoints. Use realistic, specific, ownership-testing questions and vary their focus.`;
+
+  const messages = [
     { role: 'system', content: 'You are an expert technical interviewer. Return only JSON.' },
     { role: 'user', content: prompt },
-  ]);
+  ];
 
-  const questions = Array.isArray(parsed?.questions) ? parsed.questions : [];
-  return questions.slice(0, 5).map((q, idx) => ({
-    questionId: q.questionId || `stage3_q${idx + 1}`,
-    text: q.text || `Explain your professional thinking in project ${idx + 1}.`,
+  let parsed = await callGroqJSON(messages);
+  let questions = Array.isArray(parsed?.questions) ? parsed.questions : [];
+  if (questions.length !== questionCount) {
+    parsed = await callGroqJSON([
+      ...messages,
+      { role: 'assistant', content: JSON.stringify(parsed) },
+      { role: 'user', content: `The previous response had ${questions.length} questions. Return exactly ${questionCount} distinct questions in the required JSON structure, using only the ${source} evidence.` },
+    ]);
+    questions = Array.isArray(parsed?.questions) ? parsed.questions : [];
+  }
+  if (questions.length !== questionCount) {
+    throw new Error(`Could not generate all ${questionCount} ${source} questions. Please try again.`);
+  }
+
+  return questions.map((q, idx) => ({
+    questionId: source === 'github'
+      ? q.questionId || `stage3_q${idx + 1}`
+      : `linkedin_stage3_q${idx + 1}`,
+    source,
+    text: q.text || (source === 'github'
+      ? `Explain design choices in project ${idx + 1}.`
+      : `Explain your experience with the LinkedIn profile evidence in question ${idx + 1}.`),
     domain: DOMAIN_KEYS.includes(q.domain) ? q.domain : 'system_design',
     difficulty: q.difficulty || 'moderate',
     expectedPoints: Array.isArray(q.expectedPoints) ? q.expectedPoints.slice(0, 4) : [],
   }));
 }
 
-export async function evaluateStage3Answer({ question, answerText, repoContext = [] }) {
+export async function evaluateStage3Answer({ question, answerText, repoContext = [], linkedinContext = '' }) {
   if (!answerText || !answerText.trim()) {
     return {
       score: 0,
@@ -269,11 +244,14 @@ export async function evaluateStage3Answer({ question, answerText, repoContext =
     };
   }
 
+  const context = question.source === 'linkedin'
+    ? `LinkedIn profile context: ${linkedinContext || 'not provided'}`
+    : `Repo context: ${JSON.stringify(repoContext.slice(0, 5))}`;
   const prompt = `Evaluate this answer for correctness, depth, and practical ownership.
 Question: ${question.text}
 Question domain: ${question.domain}
 Expected points: ${JSON.stringify(question.expectedPoints || [])}
-Repo context: ${JSON.stringify(repoContext.slice(0, 5))}
+${context}
 Answer: ${answerText}
 Allowed domains: ${JSON.stringify(DOMAIN_KEYS)}
 

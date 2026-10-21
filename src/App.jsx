@@ -14,6 +14,7 @@ import Timeline from './pages/Timeline';
 import Forum from './pages/Forum';
 import Feedback from './pages/Feedback';
 import News from './pages/News';
+import Internships from './pages/Internships';
 import ForumQnA from './pages/forum/ForumQnA';
 import ForumMentorMatching from './pages/forum/ForumMentorMatching';
 import ForumStudyBuddy from './pages/forum/ForumStudyBuddy';
@@ -38,6 +39,7 @@ export default function App() {
             <Route path="/forum" element={<ProtectedRoute><Forum /></ProtectedRoute>} />
             <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
             <Route path="/news" element={<ProtectedRoute><News /></ProtectedRoute>} />
+            <Route path="/internships" element={<ProtectedRoute><Internships /></ProtectedRoute>} />
             <Route path="/forum/q-and-a" element={<ProtectedRoute><ForumQnA /></ProtectedRoute>} />
             <Route path="/forum/peer-mentor-matching" element={<ProtectedRoute><ForumMentorMatching /></ProtectedRoute>} />
             <Route path="/forum/study-buddy-finder" element={<ProtectedRoute><ForumStudyBuddy /></ProtectedRoute>} />
