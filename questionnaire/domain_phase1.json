@@ -15,8 +15,7 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -55,8 +54,7 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -75,8 +73,8 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO2",
+      "PO5"
     ]
   },
   {
@@ -95,8 +93,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -115,8 +112,8 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO2",
+      "PO4"
     ]
   },
   {
@@ -135,8 +132,7 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -155,8 +151,7 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -175,8 +170,7 @@
     ],
     "answer": 0,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -195,8 +189,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -215,8 +208,7 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -235,8 +227,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -255,8 +246,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -276,7 +266,7 @@
     "answer": 2,
     "waAttributes": [
       "PO1",
-      "PO2"
+      "PO5"
     ]
   },
   {
@@ -296,7 +286,7 @@
     "answer": 1,
     "waAttributes": [
       "PO1",
-      "PO2"
+      "PO5"
     ]
   },
   {
@@ -316,7 +306,7 @@
     "answer": 1,
     "waAttributes": [
       "PO1",
-      "PO2"
+      "PO8"
     ]
   },
   {
@@ -336,7 +326,7 @@
     "answer": 1,
     "waAttributes": [
       "PO1",
-      "PO2"
+      "PO5"
     ]
   },
   {
@@ -355,8 +345,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -375,8 +364,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -415,8 +403,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -436,7 +423,7 @@
     "answer": 1,
     "waAttributes": [
       "PO1",
-      "PO2"
+      "PO5"
     ]
   },
   {
@@ -455,7 +442,6 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
       "PO2"
     ]
   },
@@ -475,8 +461,7 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -495,8 +480,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -515,8 +499,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -536,7 +519,7 @@
     "answer": 2,
     "waAttributes": [
       "PO1",
-      "PO2"
+      "PO5"
     ]
   },
   {
@@ -555,8 +538,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -595,7 +577,6 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
       "PO2"
     ]
   },
@@ -615,8 +596,7 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -635,8 +615,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -655,8 +634,7 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -675,8 +653,7 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -695,8 +672,7 @@
     ],
     "answer": 1,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -715,8 +691,7 @@
     ],
     "answer": 2,
     "waAttributes": [
-      "PO1",
-      "PO2"
+      "PO1"
     ]
   },
   {
@@ -736,7 +711,7 @@
     "answer": 1,
     "waAttributes": [
       "PO1",
-      "PO2"
+      "PO8"
     ]
   },
   {
@@ -757,6 +732,830 @@
     "waAttributes": [
       "PO1",
       "PO2"
+    ]
+  },
+  {
+    "questionId": "dsa_mcq_008",
+    "domain": "dsa",
+    "concept": "graphs",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Which data structure does Breadth-First Search typically use?",
+    "options": [
+      "Stack",
+      "Queue",
+      "Min-heap only",
+      "Hash set only"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1"
+    ]
+  },
+  {
+    "questionId": "dsa_mcq_009",
+    "domain": "dsa",
+    "concept": "trees",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "In-order traversal of a Binary Search Tree visits keys in which order?",
+    "options": [
+      "Random",
+      "Sorted ascending",
+      "Level order",
+      "Reverse insertion order"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1"
+    ]
+  },
+  {
+    "questionId": "dsa_mcq_010",
+    "domain": "dsa",
+    "concept": "complexity",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Amortized time to append to a dynamic array that doubles capacity is:",
+    "options": [
+      "O(n)",
+      "O(1)",
+      "O(n log n)",
+      "O(log n) worst-case per insert"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_mcq_008",
+    "domain": "web_dev",
+    "concept": "http",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which statement about REST PUT vs POST is correct?",
+    "options": [
+      "POST is always idempotent",
+      "PUT replaces a resource at a known URI and is idempotent",
+      "PUT always creates a new unique URI",
+      "POST cannot have a request body"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "web_mcq_009",
+    "domain": "web_dev",
+    "concept": "storage",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which client storage is sent automatically with every HTTP request to its domain?",
+    "options": [
+      "localStorage",
+      "sessionStorage",
+      "Cookies",
+      "IndexedDB"
+    ],
+    "answer": 2,
+    "waAttributes": [
+      "PO1",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "web_mcq_010",
+    "domain": "web_dev",
+    "concept": "css",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "In the CSS box model, padding is:",
+    "options": [
+      "Outside the border",
+      "Inside the border around the content",
+      "The same as margin",
+      "Ignored for inline elements always"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO5"
+    ]
+  },
+  {
+    "questionId": "ml_mcq_008",
+    "domain": "ml",
+    "concept": "evaluation",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Precision is defined as:",
+    "options": [
+      "TP / (TP + FN)",
+      "TP / (TP + FP)",
+      "TN / (TN + FP)",
+      "(TP + TN) / all"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "ml_mcq_009",
+    "domain": "ml",
+    "concept": "evaluation",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Why is a held-out test set used?",
+    "options": [
+      "To increase training size",
+      "To estimate generalization on unseen data",
+      "To tune every hyperparameter after deployment",
+      "To replace cross-validation always"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "ml_mcq_010",
+    "domain": "ml",
+    "concept": "regularization",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Dropout during neural network training mainly:",
+    "options": [
+      "Increases batch size",
+      "Randomly disables units to reduce co-adaptation",
+      "Removes the need for a validation set",
+      "Guarantees convex loss"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_mcq_008",
+    "domain": "databases",
+    "concept": "normalization",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "A relation is in 3NF if it is in 2NF and:",
+    "options": [
+      "It has no foreign keys",
+      "Non-prime attributes are not transitively dependent on a candidate key",
+      "All attributes are numeric",
+      "It uses only one table"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1"
+    ]
+  },
+  {
+    "questionId": "db_mcq_009",
+    "domain": "databases",
+    "concept": "transactions",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Which isolation level allows non-repeatable reads but prevents dirty reads?",
+    "options": [
+      "Read Uncommitted",
+      "Read Committed",
+      "Serializable only",
+      "None; dirty reads always occur"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_mcq_010",
+    "domain": "databases",
+    "concept": "query_optimization",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "What does a database EXPLAIN plan primarily show?",
+    "options": [
+      "Disk vendor",
+      "How the optimizer intends to execute the query",
+      "User passwords",
+      "Replication lag only"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO4",
+      "PO5"
+    ]
+  },
+  {
+    "questionId": "os_mcq_006",
+    "domain": "operating_systems",
+    "concept": "synchronization",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "A binary semaphore used for mutual exclusion is most similar to a:",
+    "options": [
+      "Pipe",
+      "Mutex lock",
+      "Page table",
+      "Ready queue"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_mcq_007",
+    "domain": "operating_systems",
+    "concept": "memory_management",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "A page fault occurs when:",
+    "options": [
+      "The CPU overheats",
+      "The referenced page is not in physical memory",
+      "A file is read-only",
+      "The disk is idle"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1"
+    ]
+  },
+  {
+    "questionId": "os_mcq_008",
+    "domain": "operating_systems",
+    "concept": "processes",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Compared with a new process, creating a thread typically:",
+    "options": [
+      "Allocates a full separate address space",
+      "Shares the process address space",
+      "Cannot run concurrently",
+      "Requires a new user account"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_mcq_009",
+    "domain": "operating_systems",
+    "concept": "file_systems",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "In Unix-like systems, an inode primarily stores:",
+    "options": [
+      "The file name only",
+      "File metadata and block pointers, not the directory name",
+      "The entire file contents always",
+      "User passwords"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1"
+    ]
+  },
+  {
+    "questionId": "os_mcq_010",
+    "domain": "operating_systems",
+    "concept": "syscalls",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "A system call is used to:",
+    "options": [
+      "Compile a program",
+      "Request a privileged OS service from user mode",
+      "Increase CPU clock speed",
+      "Bypass the kernel always"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1"
+    ]
+  },
+  {
+    "questionId": "net_mcq_006",
+    "domain": "networking",
+    "concept": "nat",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Network Address Translation (NAT) primarily:",
+    "options": [
+      "Compresses HTTP bodies",
+      "Maps private IPs to a public IP for outbound traffic",
+      "Replaces DNS entirely",
+      "Encrypts all packets"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1"
+    ]
+  },
+  {
+    "questionId": "net_mcq_007",
+    "domain": "networking",
+    "concept": "protocols",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "ARP is used to:",
+    "options": [
+      "Resolve IP addresses to MAC addresses on a LAN",
+      "Encrypt TLS sessions",
+      "Assign autonomous system numbers",
+      "Compress TCP windows"
+    ],
+    "answer": 0,
+    "waAttributes": [
+      "PO1"
+    ]
+  },
+  {
+    "questionId": "net_mcq_008",
+    "domain": "networking",
+    "concept": "http",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "HTTP/2 improves on HTTP/1.1 mainly by:",
+    "options": [
+      "Removing TLS",
+      "Multiplexing streams over one connection",
+      "Using UDP only",
+      "Eliminating headers"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_mcq_009",
+    "domain": "networking",
+    "concept": "protocols",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "UDP is a better fit than TCP when:",
+    "options": [
+      "Every byte must be delivered in order",
+      "Low latency and occasional loss are acceptable, as in live video",
+      "You need a three-way handshake",
+      "You need congestion-controlled reliable streams only"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_mcq_010",
+    "domain": "networking",
+    "concept": "dns",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "A recursive DNS resolver typically:",
+    "options": [
+      "Only stores MX records",
+      "Queries on behalf of the client until it gets an answer",
+      "Replaces DHCP",
+      "Assigns MAC addresses"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1"
+    ]
+  },
+  {
+    "questionId": "sec_mcq_001",
+    "domain": "security",
+    "concept": "owasp",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "SQL injection succeeds mainly because the application:",
+    "options": [
+      "Uses HTTPS",
+      "Concatenates untrusted input into a query",
+      "Uses parameterized queries",
+      "Enables MFA"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_mcq_002",
+    "domain": "security",
+    "concept": "auth",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Salting password hashes primarily defends against:",
+    "options": [
+      "TLS stripping",
+      "Precomputed rainbow tables",
+      "CSRF",
+      "DNS spoofing"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_mcq_003",
+    "domain": "security",
+    "concept": "xss",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Stored XSS is dangerous because:",
+    "options": [
+      "It only affects the attacker",
+      "Malicious script is persisted and run in other users’ browsers",
+      "It encrypts cookies",
+      "It disables CSP"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_mcq_004",
+    "domain": "security",
+    "concept": "csrf",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "A CSRF token helps because:",
+    "options": [
+      "It compresses forms",
+      "The attacker’s site cannot read the token from another origin",
+      "It replaces TLS",
+      "It hashes URLs"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_mcq_005",
+    "domain": "security",
+    "concept": "crypto",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Which is a cryptographic hash property we rely on for integrity?",
+    "options": [
+      "Reversibility",
+      "Collision resistance",
+      "Constant output independent of input",
+      "Encryption with a public key"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1"
+    ]
+  },
+  {
+    "questionId": "sec_mcq_006",
+    "domain": "security",
+    "concept": "access_control",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Least privilege means:",
+    "options": [
+      "Every user is admin",
+      "Grant only the permissions needed for a role",
+      "Disable logging",
+      "Share one service account everywhere"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_mcq_007",
+    "domain": "security",
+    "concept": "network",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "HTTPS protects data in transit using:",
+    "options": [
+      "FTP only",
+      "TLS",
+      "ARP",
+      "ICMP"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_mcq_008",
+    "domain": "security",
+    "concept": "auth",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Multi-factor authentication requires:",
+    "options": [
+      "Two passwords of the same type",
+      "Independent factors such as something you know and something you have",
+      "A longer username",
+      "Disabling recovery codes"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_mcq_009",
+    "domain": "security",
+    "concept": "privacy",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Storing full payment card numbers in application logs is primarily a failure of:",
+    "options": [
+      "Load balancing",
+      "Data minimization and professional ethics",
+      "CSS architecture",
+      "DNS caching"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_mcq_010",
+    "domain": "security",
+    "concept": "threats",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "A man-in-the-middle attack on HTTP (not HTTPS) can:",
+    "options": [
+      "Only change CSS colors",
+      "Intercept or alter unencrypted traffic",
+      "Forge CPU instructions",
+      "Disable paging"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO2",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sys_mcq_001",
+    "domain": "system_design",
+    "concept": "scalability",
+    "difficulty": 1,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Horizontal scaling means:",
+    "options": [
+      "Using a faster CPU on one machine",
+      "Adding more machines to share load",
+      "Deleting replicas",
+      "Reducing users"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1"
+    ]
+  },
+  {
+    "questionId": "sys_mcq_002",
+    "domain": "system_design",
+    "concept": "caching",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "A cache stampede (thundering herd) happens when:",
+    "options": [
+      "TTL is infinite",
+      "Many clients miss the same expired key and hit the origin together",
+      "Only one replica exists",
+      "DNS is cached"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "sys_mcq_003",
+    "domain": "system_design",
+    "concept": "consistency",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Eventual consistency means:",
+    "options": [
+      "All replicas always agree immediately",
+      "Replicas converge if no new updates occur",
+      "Writes are never acknowledged",
+      "Reads are always linearizable"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "sys_mcq_004",
+    "domain": "system_design",
+    "concept": "messaging",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "Idempotent consumers are needed because:",
+    "options": [
+      "Networks never retry",
+      "Message brokers may deliver at-least-once",
+      "Disks cannot fail",
+      "HTTP is always exactly-once"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "sys_mcq_005",
+    "domain": "system_design",
+    "concept": "availability",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "A load balancer health check is used to:",
+    "options": [
+      "Encrypt disks",
+      "Stop sending traffic to unhealthy instances",
+      "Increase MTU",
+      "Replace TLS certificates"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO3"
+    ]
+  },
+  {
+    "questionId": "sys_mcq_006",
+    "domain": "system_design",
+    "concept": "storage",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "A CDN is most useful for:",
+    "options": [
+      "Running OLTP transactions",
+      "Serving static or cacheable content close to users",
+      "Replacing primary databases",
+      "Compiling kernels"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO5"
+    ]
+  },
+  {
+    "questionId": "sys_mcq_007",
+    "domain": "system_design",
+    "concept": "queues",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Backpressure in a pipeline means:",
+    "options": [
+      "Dropping all logs",
+      "Slowing producers when consumers cannot keep up",
+      "Increasing replica lag on purpose",
+      "Disabling retries forever"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "sys_mcq_008",
+    "domain": "system_design",
+    "concept": "reliability",
+    "difficulty": 2,
+    "bloom": 1,
+    "type": "mcq",
+    "text": "A circuit breaker in microservices:",
+    "options": [
+      "Stops calling a failing dependency after a threshold",
+      "Encrypts SQL",
+      "Shards a database",
+      "Compresses images"
+    ],
+    "answer": 0,
+    "waAttributes": [
+      "PO1",
+      "PO3"
+    ]
+  },
+  {
+    "questionId": "sys_mcq_009",
+    "domain": "system_design",
+    "concept": "data",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "CQRS separates:",
+    "options": [
+      "TLS and TCP",
+      "Read models from write models",
+      "DNS and DHCP",
+      "CPU and GPU"
+    ],
+    "answer": 1,
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "sys_mcq_010",
+    "domain": "system_design",
+    "concept": "observability",
+    "difficulty": 2,
+    "bloom": 2,
+    "type": "mcq",
+    "text": "Distributed tracing is used to:",
+    "options": [
+      "Follow a request across services",
+      "Replace unit tests",
+      "Assign IP addresses",
+      "Compile TypeScript"
+    ],
+    "answer": 0,
+    "waAttributes": [
+      "PO4",
+      "PO5"
     ]
   }
 ]

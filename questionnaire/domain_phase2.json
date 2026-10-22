@@ -13,7 +13,9 @@
     "waAttributes": [
       "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "binary_search",
+    "difficulty": 2
   },
   {
     "questionId": "dsa_short_002",
@@ -27,9 +29,10 @@
       "Linked lists"
     ],
     "waAttributes": [
-      "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "sorting",
+    "difficulty": 2
   },
   {
     "questionId": "web_short_001",
@@ -43,9 +46,10 @@
       "Response returned"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO1"
+    ],
+    "concept": "http",
+    "difficulty": 1
   },
   {
     "questionId": "web_short_002",
@@ -59,9 +63,11 @@
       "Load on demand"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO2",
+      "PO5"
+    ],
+    "concept": "frontend",
+    "difficulty": 2
   },
   {
     "questionId": "ml_short_001",
@@ -77,7 +83,9 @@
     "waAttributes": [
       "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "overfitting",
+    "difficulty": 2
   },
   {
     "questionId": "db_short_001",
@@ -91,9 +99,10 @@
       "Extra storage"
     ],
     "waAttributes": [
-      "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "indexing",
+    "difficulty": 2
   },
   {
     "questionId": "dsa_short_003",
@@ -109,7 +118,9 @@
     "waAttributes": [
       "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "hashing",
+    "difficulty": 2
   },
   {
     "questionId": "dsa_short_004",
@@ -123,9 +134,10 @@
       "Recursion vs Task Scheduling"
     ],
     "waAttributes": [
-      "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "stacks",
+    "difficulty": 2
   },
   {
     "questionId": "dsa_short_005",
@@ -141,7 +153,9 @@
     "waAttributes": [
       "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "graphs",
+    "difficulty": 3
   },
   {
     "questionId": "dsa_short_006",
@@ -155,9 +169,10 @@
       "Exponential to Linear time"
     ],
     "waAttributes": [
-      "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "dynamic_programming",
+    "difficulty": 3
   },
   {
     "questionId": "dsa_short_007",
@@ -171,9 +186,10 @@
       "Preventing skewness"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO1"
+    ],
+    "concept": "trees",
+    "difficulty": 2
   },
   {
     "questionId": "web_short_003",
@@ -188,8 +204,10 @@
     ],
     "waAttributes": [
       "PO1",
-      "PO2"
-    ]
+      "PO8"
+    ],
+    "concept": "security",
+    "difficulty": 2
   },
   {
     "questionId": "web_short_004",
@@ -203,9 +221,11 @@
       "Batch updates for performance"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO2",
+      "PO5"
+    ],
+    "concept": "react",
+    "difficulty": 2
   },
   {
     "questionId": "web_short_005",
@@ -220,8 +240,10 @@
     ],
     "waAttributes": [
       "PO1",
-      "PO2"
-    ]
+      "PO5"
+    ],
+    "concept": "javascript",
+    "difficulty": 2
   },
   {
     "questionId": "web_short_006",
@@ -235,9 +257,11 @@
       "Easier crawler indexing"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO2",
+      "PO5"
+    ],
+    "concept": "frontend",
+    "difficulty": 3
   },
   {
     "questionId": "web_short_007",
@@ -252,8 +276,11 @@
     ],
     "waAttributes": [
       "PO1",
-      "PO2"
-    ]
+      "PO5",
+      "PO8"
+    ],
+    "concept": "security",
+    "difficulty": 2
   },
   {
     "questionId": "ml_short_002",
@@ -267,9 +294,10 @@
       "Multiple train-test splits"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO4"
+    ],
+    "concept": "evaluation",
+    "difficulty": 2
   },
   {
     "questionId": "ml_short_003",
@@ -283,9 +311,10 @@
       "Penalty on absolute vs squared"
     ],
     "waAttributes": [
-      "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "regularization",
+    "difficulty": 3
   },
   {
     "questionId": "ml_short_004",
@@ -301,7 +330,9 @@
     "waAttributes": [
       "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "svm",
+    "difficulty": 3
   },
   {
     "questionId": "ml_short_005",
@@ -315,9 +346,10 @@
       "Independent vs Corrective learners"
     ],
     "waAttributes": [
-      "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "ensembles",
+    "difficulty": 3
   },
   {
     "questionId": "ml_short_006",
@@ -333,7 +365,9 @@
     "waAttributes": [
       "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "optimization",
+    "difficulty": 2
   },
   {
     "questionId": "db_short_002",
@@ -349,7 +383,9 @@
     "waAttributes": [
       "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "cap",
+    "difficulty": 3
   },
   {
     "questionId": "db_short_003",
@@ -363,9 +399,11 @@
       "ACID vs BASE compliance"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO2",
+      "PO5"
+    ],
+    "concept": "nosql",
+    "difficulty": 2
   },
   {
     "questionId": "db_short_004",
@@ -379,9 +417,10 @@
       "Enforce valid relationships"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO1"
+    ],
+    "concept": "keys",
+    "difficulty": 1
   },
   {
     "questionId": "db_short_005",
@@ -395,9 +434,10 @@
       "Complex update logic"
     ],
     "waAttributes": [
-      "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "normalization",
+    "difficulty": 2
   },
   {
     "questionId": "db_short_006",
@@ -413,7 +453,9 @@
     "waAttributes": [
       "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "sharding",
+    "difficulty": 3
   },
   {
     "questionId": "os_short_001",
@@ -427,9 +469,10 @@
       "CPU time sharing"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO1"
+    ],
+    "concept": "processes",
+    "difficulty": 2
   },
   {
     "questionId": "os_short_002",
@@ -443,9 +486,10 @@
       "Internal vs External fragmentation"
     ],
     "waAttributes": [
-      "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "memory_management",
+    "difficulty": 3
   },
   {
     "questionId": "os_short_003",
@@ -459,9 +503,10 @@
       "Mutual exclusion requirement"
     ],
     "waAttributes": [
-      "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "synchronization",
+    "difficulty": 2
   },
   {
     "questionId": "os_short_004",
@@ -475,9 +520,10 @@
       "Disk used as temporary storage"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO1"
+    ],
+    "concept": "memory_management",
+    "difficulty": 2
   },
   {
     "questionId": "net_short_001",
@@ -491,9 +537,10 @@
       "Sequence number sync"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO1"
+    ],
+    "concept": "protocols",
+    "difficulty": 2
   },
   {
     "questionId": "net_short_002",
@@ -507,9 +554,10 @@
       "Built-in IPSec/Auto-config"
     ],
     "waAttributes": [
-      "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "protocols",
+    "difficulty": 2
   },
   {
     "questionId": "net_short_003",
@@ -525,7 +573,9 @@
     "waAttributes": [
       "PO1",
       "PO2"
-    ]
+    ],
+    "concept": "subnets",
+    "difficulty": 2
   },
   {
     "questionId": "net_short_004",
@@ -539,9 +589,11 @@
       "Ensure high availability"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO2",
+      "PO3"
+    ],
+    "concept": "load_balancing",
+    "difficulty": 3
   },
   {
     "questionId": "net_short_005",
@@ -555,9 +607,10 @@
       "Lease time management"
     ],
     "waAttributes": [
-      "PO1",
-      "PO2"
-    ]
+      "PO1"
+    ],
+    "concept": "protocols",
+    "difficulty": 2
   },
   {
     "questionId": "sec_short_001",
@@ -572,7 +625,506 @@
     ],
     "waAttributes": [
       "PO1",
+      "PO2",
+      "PO8"
+    ],
+    "concept": "cryptography",
+    "difficulty": 2
+  },
+  {
+    "questionId": "dsa_short_008",
+    "domain": "dsa",
+    "concept": "two_pointers",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain the two-pointer technique and one problem it solves efficiently.",
+    "expectedPoints": [
+      "Two indices move through a sequence",
+      "Often used on sorted arrays or strings",
+      "Can reduce nested loops from quadratic to linear"
+    ],
+    "waAttributes": [
+      "PO1",
       "PO2"
+    ]
+  },
+  {
+    "questionId": "web_short_008",
+    "domain": "web_dev",
+    "concept": "security",
+    "difficulty": 3,
+    "bloom": 4,
+    "type": "short",
+    "text": "Explain CSRF and one concrete way a web app should prevent it.",
+    "expectedPoints": [
+      "Attacker tricks a logged-in browser into a state-changing request",
+      "SameSite cookies or anti-CSRF tokens",
+      "Protects users from unauthorized actions"
+    ],
+    "waAttributes": [
+      "PO2",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "ml_short_007",
+    "domain": "ml",
+    "concept": "evaluation",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "What does each cell of a binary confusion matrix represent, and when would you optimize recall over precision?",
+    "expectedPoints": [
+      "True/false positives and negatives",
+      "Recall is TP over actual positives",
+      "Prefer recall when missing positives is costly, such as disease screening"
+    ],
+    "waAttributes": [
+      "PO2",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "ml_short_008",
+    "domain": "ml",
+    "concept": "preprocessing",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Why is feature scaling often required before gradient-based training or k-NN?",
+    "expectedPoints": [
+      "Features on different scales dominate distance or gradients",
+      "Standardization or min-max scaling",
+      "Improves convergence and fair feature influence"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_short_007",
+    "domain": "databases",
+    "concept": "concurrency",
+    "difficulty": 3,
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain how MVCC lets readers avoid blocking writers.",
+    "expectedPoints": [
+      "Multiple row versions by transaction timestamp",
+      "Readers see a snapshot",
+      "Writers create new versions instead of overwriting in place"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "db_short_008",
+    "domain": "databases",
+    "concept": "transactions",
+    "difficulty": 2,
+    "bloom": 4,
+    "type": "short",
+    "text": "How can two database transactions deadlock, and how does a DBMS typically recover?",
+    "expectedPoints": [
+      "Circular wait on locks",
+      "Wait-for graph or timeout detection",
+      "Abort one transaction and roll it back"
+    ],
+    "waAttributes": [
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_short_005",
+    "domain": "operating_systems",
+    "concept": "synchronization",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Describe the producer-consumer problem and how a bounded buffer plus semaphores solve it.",
+    "expectedPoints": [
+      "Producers and consumers share a fixed buffer",
+      "Empty and full counts plus a mutex",
+      "Avoids overflow, underflow, and races"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_short_006",
+    "domain": "operating_systems",
+    "concept": "memory_management",
+    "difficulty": 3,
+    "bloom": 4,
+    "type": "short",
+    "text": "What is thrashing, and how can an OS reduce it?",
+    "expectedPoints": [
+      "Too many page faults, little useful work",
+      "Working set larger than RAM",
+      "Reduce multiprogramming or add memory / better replacement"
+    ],
+    "waAttributes": [
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_short_007",
+    "domain": "operating_systems",
+    "concept": "memory_management",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain copy-on-write after fork and why it is efficient.",
+    "expectedPoints": [
+      "Parent and child share pages marked read-only",
+      "A write triggers a private copy",
+      "Avoids copying the whole address space up front"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "os_short_008",
+    "domain": "operating_systems",
+    "concept": "io",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Compare interrupt-driven I/O with polling.",
+    "expectedPoints": [
+      "Polling repeatedly checks device status",
+      "Interrupts notify the CPU when ready",
+      "Interrupts save CPU when devices are slow; polling can be better for very fast devices"
+    ],
+    "waAttributes": [
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_short_006",
+    "domain": "networking",
+    "concept": "diagnostics",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "How does traceroute discover hops, and what does a timeout at a hop mean?",
+    "expectedPoints": [
+      "Sends probes with increasing TTL",
+      "Expired hops return ICMP time exceeded",
+      "Timeout may mean filtering or loss, not always a down router"
+    ],
+    "waAttributes": [
+      "PO2",
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "net_short_007",
+    "domain": "networking",
+    "concept": "cdn",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain how a CDN uses DNS or Anycast to serve content from a nearby edge.",
+    "expectedPoints": [
+      "Resolve to a nearby PoP",
+      "Cache objects at the edge",
+      "Origin fetch on miss"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "net_short_008",
+    "domain": "networking",
+    "concept": "tls",
+    "difficulty": 3,
+    "bloom": 4,
+    "type": "short",
+    "text": "Outline the TLS handshake goals: authentication, key agreement, and confidentiality.",
+    "expectedPoints": [
+      "Certificate authenticates the server",
+      "Parties agree on session keys",
+      "Application data is encrypted afterward"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_short_002",
+    "domain": "security",
+    "concept": "auth",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Why should passwords be hashed with a slow KDF (bcrypt/Argon2) rather than SHA-256 alone?",
+    "expectedPoints": [
+      "Slow hashing raises brute-force cost",
+      "Salt per password",
+      "SHA-256 is too fast for password storage"
+    ],
+    "waAttributes": [
+      "PO2",
+      "PO5",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_short_003",
+    "domain": "security",
+    "concept": "xss",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "How does output encoding plus CSP reduce XSS risk?",
+    "expectedPoints": [
+      "Encode untrusted HTML/JS context",
+      "CSP restricts script sources",
+      "Defense in depth for user-generated content"
+    ],
+    "waAttributes": [
+      "PO2",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_short_004",
+    "domain": "security",
+    "concept": "oauth",
+    "difficulty": 3,
+    "bloom": 4,
+    "type": "short",
+    "text": "Why is the OAuth 2 authorization-code flow with PKCE preferred in public clients over implicit flow?",
+    "expectedPoints": [
+      "Code exchanged at the token endpoint",
+      "PKCE binds the code to the client instance",
+      "Avoids exposing tokens in URLs or logs"
+    ],
+    "waAttributes": [
+      "PO2",
+      "PO5",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_short_005",
+    "domain": "security",
+    "concept": "privacy",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Give two data-minimization practices when logging production traffic.",
+    "expectedPoints": [
+      "Redact tokens and personal identifiers",
+      "Avoid storing full request bodies with secrets",
+      "Retain logs only as long as needed"
+    ],
+    "waAttributes": [
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_short_006",
+    "domain": "security",
+    "concept": "threat_model",
+    "difficulty": 3,
+    "bloom": 4,
+    "type": "short",
+    "text": "In STRIDE terms, how do spoofing and elevation of privilege differ?",
+    "expectedPoints": [
+      "Spoofing is pretending to be another identity",
+      "Elevation is gaining more rights than allowed",
+      "Different controls: authentication vs authorization"
+    ],
+    "waAttributes": [
+      "PO2",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sec_short_007",
+    "domain": "security",
+    "concept": "crypto",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "When should you use a MAC/HMAC versus encryption alone?",
+    "expectedPoints": [
+      "Encryption hides content but not always integrity",
+      "HMAC authenticates the message",
+      "Use authenticated encryption (encrypt-then-MAC or AEAD)"
+    ],
+    "waAttributes": [
+      "PO1",
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "sec_short_008",
+    "domain": "security",
+    "concept": "secure_sdlc",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "What is the purpose of dependency scanning (SCA) in a secure SDLC?",
+    "expectedPoints": [
+      "Find known vulnerable libraries",
+      "Alert on CVEs in the software bill of materials",
+      "Complement code review, not replace it"
+    ],
+    "waAttributes": [
+      "PO5",
+      "PO8"
+    ]
+  },
+  {
+    "questionId": "sys_short_001",
+    "domain": "system_design",
+    "concept": "caching",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Compare cache-aside and write-through caching.",
+    "expectedPoints": [
+      "Cache-aside: app reads cache then DB on miss",
+      "Write-through: writes update cache and store together",
+      "Trade freshness, write latency, and complexity"
+    ],
+    "waAttributes": [
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "sys_short_002",
+    "domain": "system_design",
+    "concept": "queues",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "When would you put a work queue between an API and a worker instead of doing the work inline?",
+    "expectedPoints": [
+      "Decouple latency-sensitive requests from slow jobs",
+      "Buffer spikes",
+      "Retry failed work independently"
+    ],
+    "waAttributes": [
+      "PO2",
+      "PO3"
+    ]
+  },
+  {
+    "questionId": "sys_short_003",
+    "domain": "system_design",
+    "concept": "consistency",
+    "difficulty": 3,
+    "bloom": 4,
+    "type": "short",
+    "text": "Give a product example where eventual consistency is acceptable and one where it is not.",
+    "expectedPoints": [
+      "Acceptable: social like counts or recommendations",
+      "Not acceptable: bank ledger or inventory reservation at checkout",
+      "User-visible invariants decide the model"
+    ],
+    "waAttributes": [
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "sys_short_004",
+    "domain": "system_design",
+    "concept": "sharding",
+    "difficulty": 3,
+    "bloom": 4,
+    "type": "short",
+    "text": "What problems does a poorly chosen shard key create?",
+    "expectedPoints": [
+      "Hot partitions",
+      "Scatter-gather queries",
+      "Hard rebalancing if the key is not stable"
+    ],
+    "waAttributes": [
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "sys_short_005",
+    "domain": "system_design",
+    "concept": "reliability",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Explain retries with exponential backoff and jitter, and why naive immediate retries fail.",
+    "expectedPoints": [
+      "Backoff spreads retry load over time",
+      "Jitter avoids synchronized retries",
+      "Immediate retries can amplify an outage"
+    ],
+    "waAttributes": [
+      "PO2",
+      "PO3"
+    ]
+  },
+  {
+    "questionId": "sys_short_006",
+    "domain": "system_design",
+    "concept": "api",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Why is pagination required for list APIs at scale?",
+    "expectedPoints": [
+      "Unbounded responses exhaust memory and time",
+      "Cursor or offset pages",
+      "Protects both client and server"
+    ],
+    "waAttributes": [
+      "PO2"
+    ]
+  },
+  {
+    "questionId": "sys_short_007",
+    "domain": "system_design",
+    "concept": "observability",
+    "difficulty": 2,
+    "bloom": 3,
+    "type": "short",
+    "text": "Distinguish metrics, logs, and traces in investigating a latency spike.",
+    "expectedPoints": [
+      "Metrics show overall SLO/error rate",
+      "Logs give event detail",
+      "Traces show where time is spent across services"
+    ],
+    "waAttributes": [
+      "PO4"
+    ]
+  },
+  {
+    "questionId": "sys_short_008",
+    "domain": "system_design",
+    "concept": "ethics",
+    "difficulty": 2,
+    "bloom": 4,
+    "type": "short",
+    "text": "What user-data risks appear when you add product analytics beacons, and how should you mitigate them?",
+    "expectedPoints": [
+      "PII leakage in events",
+      "Need consent and minimization",
+      "Access control and retention limits on analytics stores"
+    ],
+    "waAttributes": [
+      "PO8"
     ]
   }
 ]
