@@ -7,6 +7,7 @@ import { updateBelief } from '../engine/bkt';
 import { scoreSubjective, scoreStructured } from '../engine/rubric';
 import { selectNextQuestion, isPhaseComplete } from '../engine/questionSelector';
 import { useToast } from '../components/ToastContext';
+import { formatDomainLabel } from '../utils/domainLabels';
 
 export default function Quiz() {
   const navigate = useNavigate();
@@ -288,8 +289,8 @@ export default function Quiz() {
     return <div className="min-h-screen flex items-center justify-center">Processing...</div>;
   }
 
-  const domainLabel = (currentQuestion.domain || 'general').replace('_', ' ');
-  const conceptLabel = (currentQuestion.concept || 'general').replace('_', ' ');
+  const domainLabel = formatDomainLabel(currentQuestion.domain || 'general');
+  const conceptLabel = formatDomainLabel(currentQuestion.concept || 'general');
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center pt-8 pb-12 px-4 sm:px-6">

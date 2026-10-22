@@ -7,7 +7,10 @@ import {
   Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from 'recharts';
 import Navbar from '../components/Navbar';
+import CareerVisualization from '../components/CareerVisualization';
+import SkillRoadmap from '../components/SkillRoadmap';
 import { useToast } from '../components/ToastContext';
+import { formatDomainLabel } from '../utils/domainLabels';
 
 export default function Results() {
   const navigate = useNavigate();
@@ -95,7 +98,7 @@ export default function Results() {
 
   // Format Data for Recharts
   const domainData = Object.entries(results.domainScores || {}).map(([name, score]) => ({
-    name,
+    name: formatDomainLabel(name),
     score: Math.round(score * 100),
     rawScore: score
   }));
@@ -140,9 +143,9 @@ export default function Results() {
       <div className="max-w-5xl mx-auto space-y-10 py-12 px-4 sm:px-6 lg:px-8 w-full">
         
         {/* Header Actions */}
-        <div className="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+        <div className="flex flex-wrap justify-between items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
           <h1 className="text-3xl font-extrabold text-gray-900">Your Engineering Profile</h1>
-          <div className="flex space-x-3">
+          <div className="flex flex-wrap gap-3">
             <button onClick={() => navigate('/timeline')} className="text-blue-700 bg-blue-100 hover:bg-blue-200 font-bold py-2 px-4 rounded shadow-sm transition">
               Explore Role Timelines
             </button>
@@ -159,7 +162,7 @@ export default function Results() {
         <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-2xl shadow-xl overflow-hidden p-8 flex flex-col md:flex-row items-center justify-between">
           <div className="space-y-3 p-4">
             <h2 className="text-lg font-bold uppercase tracking-widest text-blue-200">Best Domain</h2>
-            <p className="text-5xl font-black">{results.bestDomain}</p>
+            <p className="text-5xl font-black">{formatDomainLabel(results.bestDomain)}</p>
             <span className="inline-block px-4 py-1 bg-white text-indigo-700 rounded-full text-sm font-bold mt-2 shadow">
               {results.competencyLevel} Level
             </span>
@@ -178,7 +181,7 @@ export default function Results() {
             <h3 className="text-xl font-bold text-red-800 mb-2">Remedial Focus Required</h3>
             <p className="text-red-700 mb-4">
               We highly encourage pausing to strengthen your foundational programming paradigms. 
-              Review the fundamentals of <strong>{results.bestDomain}</strong>, concentrating on syntax logic and base algorithms.
+              Review the fundamentals of <strong>{formatDomainLabel(results.bestDomain)}</strong>, concentrating on syntax logic and base algorithms.
             </p>
           </div>
         )}
@@ -237,10 +240,10 @@ export default function Results() {
             <h3 className="text-xl font-bold mb-6">Domain Proficiency</h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={domainData} layout="vertical" margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                <BarChart data={domainData} layout="vertical" margin={{ top: 5, right: 30, left: 40, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" horizontal={false} />
                   <XAxis type="number" domain={[0, 100]} />
-                  <YAxis dataKey="name" type="category" />
+                  <YAxis dataKey="name" type="category" width={130} />
                   <Tooltip />
                   <Bar dataKey="score" radius={[0, 4, 4, 0]}>
                     {domainData.map((entry, index) => (
@@ -306,16 +309,21 @@ export default function Results() {
            </div>
         </div>
 
+        <CareerVisualization results={results} />
+        <SkillRoadmap results={results} />
+
         {/* D & H: Concepts Breakdown and Skill Gaps */}
         <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
           <h3 className="text-2xl font-bold mb-6 border-b border-gray-100 pb-3 text-gray-900">Domain Probabilities Mapping</h3>
           
           <div className="space-y-4">
-            {Object.entries(results.domainProbabilities || {}).map(([domain, prob]) => (
+            {Object.entries(results.domainProbabilities || {})
+              .sort((a, b) => b[1] - a[1])
+              .map(([domain, prob]) => (
               <div key={domain} className="w-full">
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm font-bold text-gray-700 capitalize">
-                    {domain.replace('_', ' ')}
+                  <span className="text-sm font-bold text-gray-700">
+                    {formatDomainLabel(domain)}
                   </span>
                   <span className="text-sm font-bold text-gray-500">{Math.round(prob * 100)}% Match</span>
                 </div>
@@ -334,7 +342,7 @@ export default function Results() {
                   Focus areas for improvement
                 </h4>
                 <ul className="list-disc list-inside text-red-700 text-sm space-y-1 font-medium ml-2">
-                  {results.skillGaps.map((gap, i) => <li key={i}>{gap}</li>)}
+                  {results.skillGaps.map((gap, i) => <li key={i}>{formatDomainLabel(gap)}</li>)}
                 </ul>
              </div>
           )}

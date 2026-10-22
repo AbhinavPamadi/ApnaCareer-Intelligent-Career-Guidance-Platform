@@ -5,6 +5,7 @@ import { doc, getDoc, writeBatch, collection, getDocs, updateDoc } from 'firebas
 import { auth, db } from '../firebase';
 import Navbar from '../components/Navbar';
 import { useToast } from '../components/ToastContext';
+import { formatDomainLabel } from '../utils/domainLabels';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -211,7 +212,7 @@ export default function Dashboard() {
             <h2 className="text-3xl font-bold text-gray-900">Assessment Complete</h2>
             <div className="my-6 space-y-2 pb-6 border-b border-gray-100">
               <p className="text-gray-500 uppercase tracking-widest text-sm font-bold">Best Domain Match</p>
-              <p className="text-4xl font-extrabold text-blue-600">{resultsData.bestDomain}</p>
+              <p className="text-4xl font-extrabold text-blue-600">{formatDomainLabel(resultsData.bestDomain)}</p>
               
               <div className="mt-4 pt-4">
                 <p className="text-gray-500 uppercase tracking-widest text-sm font-bold mb-2">Top Role Recommendation</p>

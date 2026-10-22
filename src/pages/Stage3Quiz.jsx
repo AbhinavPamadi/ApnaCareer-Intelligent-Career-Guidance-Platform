@@ -14,6 +14,7 @@ import {
   generateStage3Questions,
 } from '../engine/stage3';
 import { useToast } from '../components/ToastContext';
+import { formatDomainLabel } from '../utils/domainLabels';
 
 export default function Stage3Quiz() {
   const navigate = useNavigate();
@@ -481,7 +482,7 @@ export default function Stage3Quiz() {
 
             <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
               <p className="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">
-                {currentQuestion.domain.replace('_', ' ')} • {currentQuestion.difficulty}
+                {formatDomainLabel(currentQuestion.domain)} • {currentQuestion.difficulty}
               </p>
               <p className="text-gray-900 font-medium">{currentQuestion.text}</p>
             </div>
